@@ -16,8 +16,12 @@ class RangeSlider: UIControl {
     var trackBackgroundImageView: UIImageView!;
     var lowerHandle: UIImageView!;
     var higherHandle: UIImageView!;
+    private var lowCenter: CGPoint!;
+    private var higherCenter: CGPoint!;
     
     
+    
+    var defaultHandleImage: UIImage = #imageLiteral(resourceName: "slider-default7-handle.png");
     
     
     
@@ -33,19 +37,34 @@ class RangeSlider: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
 
     func configureViews() {
-        let rect = CGRect(x: 0, y: self.frame.size.height/2, width: self.frame.size.width, height: 5)
-        trackBackgroundImageView = UIImageView(frame: rect)
+        let backgroundRect = CGRect(x: 0, y: self.frame.size.height/2, width: self.frame.size.width, height: 5)
+        trackBackgroundImageView = UIImageView(frame: backgroundRect)
         trackBackgroundImageView.backgroundColor = .white
         addSubview(self.trackBackgroundImageView)
         
+        
+//        trackImageView = UIImageView(frame: CGRect(x: 20, y: 20, width: 20, height: 20));
+//        addSubview(trackImageView)
+//        trackImageView.backgroundColor = .red
+        
+        lowerHandle = UIImageView(image: defaultHandleImage)
+        lowerHandle.frame = CGRect(x: 40, y: 20, width: 20, height: 20);
+        addSubview(lowerHandle)
+        
+        
+        
+        
+        
+        
     }
     
-    func trackBackgroundRect() {
-        
-        
-    }
+    
+    
+    
     
     
     
