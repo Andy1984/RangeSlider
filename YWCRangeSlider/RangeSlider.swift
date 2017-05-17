@@ -25,6 +25,12 @@ class RangeSlider: UIControl {
     var lowerValue = 0.0
     var higherValue = 0.0
     
+    ///  maximum value for left thumb
+    var lowerMaximumValue = 0.0;
+    
+    /// minimum value for right thumb
+    var higherMinimumValue = 0.0;
+    
     var lowerTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
     let higherTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
     
@@ -58,9 +64,12 @@ class RangeSlider: UIControl {
 
     func configureViews() {
         
-        
+
         lowerValue = minimumValue
         higherValue = maximumValue
+        lowerMaximumValue = Double.nan
+        higherMinimumValue = Double.nan
+        
         
         
         
@@ -89,14 +98,11 @@ class RangeSlider: UIControl {
         if lowerRect.contains(touchPoint) {
             lowerHandle.isHighlighted = true
             
-        } else {
-            lowerHandle.isHighlighted = false
         }
+        
         let higherRect = UIEdgeInsetsInsetRect(higherHandle.frame, higherTouchEdgeInsets)
         if higherRect.contains(touchPoint) {
             higherHandle.isHighlighted = true
-        } else {
-            higherHandle.isHighlighted = false
         }
     
         return true
@@ -107,25 +113,62 @@ class RangeSlider: UIControl {
             return true
         }
         let touchPoint = touch.location(in: self)
+        
+        
+        
+        
+        
         if lowerHandle.isHighlighted {
-            let pointX = touchPoint.x
-            let pointY = lowerHandle.center.y
-            lowerHandle.center = CGPoint(x: pointX, y: pointY)
+            let newValue = lowerValueForCenterX(x: Double(touchPoint.x))
+            if newValue < lowerValue || !higherHandle.isHighlighted {
+                higherHandle.isHighlighted = false
+                bringSubview(toFront: lowerHandle)
+                
+                let pointX = touchPoint.x
+                let pointY = lowerHandle.center.y
+                lowerHandle.center = CGPoint(x: pointX, y: pointY)
+                
+            } else {
+                lowerHandle.isHighlighted = false
+            }
+            
         }
         
         if higherHandle.isHighlighted {
-            let pointX = touchPoint.x
-            let pointY = higherHandle.center.y
-            higherHandle.center = CGPoint(x: pointX, y: pointY)
+            
+            let newValue = lowerValueForCenterX(x: Double(touchPoint.x))
+            
+            if newValue > higherValue || !lowerHandle.isHighlighted {
+                
+                lowerHandle.isHighlighted = false
+                bringSubview(toFront: higherHandle)
+                
+                let pointX = touchPoint.x
+                let pointY = higherHandle.center.y
+                higherHandle.center = CGPoint(x: pointX, y: pointY)
+            } else {
+                higherHandle.isHighlighted = false
+            }
+            
+            
         }
         
         return true;
     }
     
     
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        lowerHandle.isHighlighted = false
+        higherHandle.isHighlighted = false
+    }
+    
     
     
     func lowerValueForCenterX(x:Double) -> Double {
+        
+        
+        
+        
         let padding = Double(lowerHandle.frame.size.width/2.0)
         let valueGap = maximumValue - minimumValue
         let lengthMinusPadding = Double(self.frame.size.width) - padding * 2
@@ -142,6 +185,52 @@ class RangeSlider: UIControl {
 //        let valueGap = maximumValue - minimumValue
 //        
 //    }
+    
+    func setValue(lower:Double, higher:Double, animated:Bool) {
+        
+        
+        
+        
+        
+    }
+    
+    func setLowerValue(value:Double, animated:Bool) {
+        setValue(lower: lowerValue, higher: Double.nan, animated: true)
+    }
+    
+    func setHigherValue(value:Double, animated:Bool) {
+        setValue(lower: Double.nan, higher: value, animated: true)
+    }
+    
+    func setLowerValue(lowerValue:Double) {
+        var value = lowerValue
+        value = min(value, maximumValue)
+        value = max(value, minimumValue)
+        
+        if !lowerMaximumValue.isNaN {
+            value = min(value, lowerMaximumValue)
+        }
+        value = min(value, higherValue - minimumRange)
+        self.lowerValue = value
+        
+        setNeedsDisplay()
+    }
+    
+    func setHigherValue(higherValue:Double) {
+        var value = higherValue
+        value = max(value, minimumValue)
+        value = min(value, maximumValue)
+        if !higherMinimumValue.isNaN {
+            value = max(value, higherMinimumValue)
+        }
+        value = max(value, lowerValue + minimumRange)
+        self.higherValue = value
+        setNeedsDisplay()
+    }
+    
+    
+    
+    
     
     
     
