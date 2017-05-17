@@ -70,14 +70,8 @@ class RangeSlider: UIControl {
         trackBackgroundImageView.backgroundColor = .blue
         addSubview(self.trackBackgroundImageView)
         
-        
-//        trackImageView = UIImageView(frame: CGRect(x: 20, y: 20, width: 20, height: 20));
-//        addSubview(trackImageView)
-//        trackImageView.backgroundColor = .red
-        
         lowerHandle = UIImageView(image: defaultHandleImage)
         lowerHandle.frame = CGRect(x: 40, y: 20, width: 20, height: 20);
-        
         addSubview(lowerHandle)
         
         higherHandle = UIImageView(image: defaultHandleImage)
@@ -95,10 +89,14 @@ class RangeSlider: UIControl {
         if lowerRect.contains(touchPoint) {
             lowerHandle.isHighlighted = true
             
+        } else {
+            lowerHandle.isHighlighted = false
         }
         let higherRect = UIEdgeInsetsInsetRect(higherHandle.frame, higherTouchEdgeInsets)
         if higherRect.contains(touchPoint) {
             higherHandle.isHighlighted = true
+        } else {
+            higherHandle.isHighlighted = false
         }
     
         return true
@@ -115,8 +113,16 @@ class RangeSlider: UIControl {
             lowerHandle.center = CGPoint(x: pointX, y: pointY)
         }
         
+        if higherHandle.isHighlighted {
+            let pointX = touchPoint.x
+            let pointY = higherHandle.center.y
+            higherHandle.center = CGPoint(x: pointX, y: pointY)
+        }
+        
         return true;
     }
+    
+    
     
     
     func lowerValueForCenterX(x:Double) -> Double {
