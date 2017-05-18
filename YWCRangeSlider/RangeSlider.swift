@@ -58,6 +58,9 @@ class RangeSlider: UIControl {
     
     var defaultHandleImage = #imageLiteral(resourceName: "slider-default7-handle.png")
     
+//    var lowHandleImage:UIImage?
+//    var highHandleImage:UIImage?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,6 +71,8 @@ class RangeSlider: UIControl {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var handleImage:UIImage?
     
     
     
@@ -85,12 +90,12 @@ class RangeSlider: UIControl {
         trackBackgroundImageView.backgroundColor = .blue
         addSubview(self.trackBackgroundImageView)
         
-        lowHandle = UIImageView(image: defaultHandleImage)
-        lowHandle.frame = handleRectFor(value: 0, image: lowHandle.image!)
+     
+        
+        lowHandle = UIImageView()
         addSubview(lowHandle)
         
-        highHandle = UIImageView(image: defaultHandleImage)
-        highHandle.frame = handleRectFor(value: 1.0, image: highHandle.image!)
+        highHandle = UIImageView()
         addSubview(highHandle)
         
         
@@ -264,11 +269,23 @@ class RangeSlider: UIControl {
         if hideHighHandle {
             highValue = maximumValue
         }
-        lowHandle.frame = handleRectFor(value: lowValue, image: lowHandle.image!)
-        highHandle.frame = handleRectFor(value: highValue, image: highHandle.image!)
         
+        if lowHandle.image == nil {
+            lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: 31, height: 31))
+            becomeSystemBall(ball: lowHandle)
+        } else {
+            lowHandle.frame = handleRectFor(value: lowValue, size: lowHandle.image!.size)
+            backToImage(ball: lowHandle)
+        }
         
-//        self.lowHandle.frame = 
+        if highHandle.image == nil {
+            highHandle.frame = handleRectFor(value: highValue, size: CGSize(width: 31, height: 31))
+            becomeSystemBall(ball: highHandle)
+        } else {
+            highHandle.frame = handleRectFor(value: highValue, size: highHandle.image!.size)
+            backToImage(ball: highHandle)
+        }
+        
     }
     
     func trackBackgroundRect() -> CGRect {
@@ -279,17 +296,10 @@ class RangeSlider: UIControl {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
-//    func trackRect() -> CGRect {
-//    
-//    }
-    
-    func handleRectFor(value:Double, image: UIImage) -> CGRect {
-        var handleRect = CGRect(origin: CGPoint.zero, size: image.size)
+    func handleRectFor(value:Double, size: CGSize) -> CGRect {
+        var handleRect = CGRect(origin: CGPoint.zero, size: size)
         
-        let insets = image.capInsets
-        if insets.top != 0 || insets.bottom != 0 {
-            handleRect.size.height = self.bounds.size.height
-        }
+        
         
         let xValue = Double(self.bounds.size.width - handleRect.size.width) * (value - minimumValue) / (maximumValue - minimumValue)
         let originY = Double(self.bounds.size.height)/2.0 - Double(handleRect.size.height)/2
@@ -298,6 +308,23 @@ class RangeSlider: UIControl {
         let originPoint = CGPoint(x: xValue, y:originY)
         handleRect.origin = originPoint
         return handleRect.integral
+    }
+    
+    
+    private func becomeSystemBall(ball:UIImageView) {
+        ball.layer.cornerRadius = 31/2;
+        ball.layer.shadowOffset = CGSize(width:0, height:2);
+        ball.layer.shadowOpacity = 0.5;
+        ball.backgroundColor = .white
+        ball.layer.shadowColor = UIColor.black.cgColor
+    }
+    
+    private func backToImage(ball:UIImageView) {
+        ball.layer.cornerRadius = 0;
+        ball.layer.shadowOffset = CGSize.zero;
+        ball.layer.shadowOpacity = 0;
+        ball.backgroundColor = .clear
+        ball.layer.shadowColor = UIColor.clear.cgColor
     }
 
 }
