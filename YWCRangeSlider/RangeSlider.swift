@@ -54,14 +54,6 @@ class RangeSlider: UIControl {
     private var highTouchOffset = 0.0
     
     
-    
-    
-    var defaultHandleImage = #imageLiteral(resourceName: "slider-default7-handle.png")
-    
-//    var lowHandleImage:UIImage?
-//    var highHandleImage:UIImage?
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureViews()

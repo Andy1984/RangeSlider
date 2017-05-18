@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E439A6411ECAF43800E60CBA /* slider-default7-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = E439A63F1ECAF43800E60CBA /* slider-default7-handle.png */; };
-		E439A6421ECAF43800E60CBA /* slider-default7-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E439A6401ECAF43800E60CBA /* slider-default7-handle@2x.png */; };
 		E48A6A401EC9A09300F17FCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A6A3F1EC9A09300F17FCC /* AppDelegate.swift */; };
 		E48A6A421EC9A09300F17FCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A6A411EC9A09300F17FCC /* ViewController.swift */; };
 		E48A6A451EC9A09300F17FCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E48A6A431EC9A09300F17FCC /* Main.storyboard */; };
@@ -18,8 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E439A63F1ECAF43800E60CBA /* slider-default7-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle.png"; sourceTree = "<group>"; };
-		E439A6401ECAF43800E60CBA /* slider-default7-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle@2x.png"; sourceTree = "<group>"; };
 		E48A6A3C1EC9A09300F17FCC /* YWCRangeSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YWCRangeSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E48A6A3F1EC9A09300F17FCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E48A6A411EC9A09300F17FCC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,8 +40,6 @@
 		E439A63E1ECAF43800E60CBA /* images */ = {
 			isa = PBXGroup;
 			children = (
-				E439A63F1ECAF43800E60CBA /* slider-default7-handle.png */,
-				E439A6401ECAF43800E60CBA /* slider-default7-handle@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -143,8 +137,6 @@
 			files = (
 				E48A6A4A1EC9A09300F17FCC /* LaunchScreen.storyboard in Resources */,
 				E48A6A471EC9A09300F17FCC /* Assets.xcassets in Resources */,
-				E439A6411ECAF43800E60CBA /* slider-default7-handle.png in Resources */,
-				E439A6421ECAF43800E60CBA /* slider-default7-handle@2x.png in Resources */,
 				E48A6A451EC9A09300F17FCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
