@@ -133,9 +133,7 @@ class RangeSlider: UIControl {
                 highHandle.isHighlighted = false
                 bringSubview(toFront: lowHandle)
                 
-                let pointX = Double(touchPoint.x)
-//                let pointY = Double(lowHandle.center.y)
-                
+                let pointX = touchPoint.x.native
                 let low = lowValueForCenterX(x: pointX)
                 
                 setValue(low: low, high: Double.nan, animated: stepValueContinuously)
@@ -155,9 +153,9 @@ class RangeSlider: UIControl {
                 lowHandle.isHighlighted = false
                 bringSubview(toFront: highHandle)
                 
-                let pointX = touchPoint.x
-                let pointY = highHandle.center.y
-                highHandle.center = CGPoint(x: pointX, y: pointY)
+                let pointX = touchPoint.x.native
+                let high = highValueForCenterX(x: pointX)
+                setValue(low: Double.nan, high: high, animated: stepValueContinuously)
             } else {
                 highHandle.isHighlighted = false
             }
@@ -267,7 +265,7 @@ class RangeSlider: UIControl {
             highValue = maximumValue
         }
         lowHandle.frame = handleRectFor(value: lowValue, image: lowHandle.image!)
-        
+        highHandle.frame = handleRectFor(value: highValue, image: highHandle.image!)
         
         
 //        self.lowHandle.frame = 
