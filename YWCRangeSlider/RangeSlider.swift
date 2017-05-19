@@ -22,7 +22,11 @@ class RangeSlider: UIControl {
     
     var stepValueContinuously = false
     
+    
+    /// default 0.0
     var lowValue = 0.0
+    
+    /// default = maximumValue
     var highValue = 0.0
     
     ///  maximum value for left thumb
@@ -34,18 +38,37 @@ class RangeSlider: UIControl {
     /// default is 2.0
     var sliderLineHeight = 2.0;
     
+    /// make left thumb easy to touch
     var lowTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
+    /// make right thumb easy to touch
     let highTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
     
     var trackImageView: UIImageView!
+    
+    var trackImage: UIImage {
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        v.backgroundColor = .blue
+        return getImageFrom(view: v)
+    }
+    
+    var trackCrossedImage: UIImage {
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        v.backgroundColor = .red
+        return getImageFrom(view: v)
+    }
+    
+    func getImageFrom(view: UIView) -> UIImage {
+        UIGraphicsBeginImageContext(view.bounds.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return screenShot!
+    }
+    
+    
     var trackBackgroundImageView: UIImageView!
     var lowHandle: UIImageView!
     var highHandle: UIImageView!
-    
-    
-    
-    private var lowCenter: CGPoint!
-    private var highCenter: CGPoint!
     
     var hideLowHandle = false
     var hideHighHandle = false
@@ -66,23 +89,33 @@ class RangeSlider: UIControl {
     
     var handleImage:UIImage?
     
+    func trackImageForCurrentValues() -> UIImage {
+        if lowValue <= highValue {
+            return trackImage
+        } else {
+            return trackCrossedImage
+        }
+    }
     
     
-
+    
     func configureViews() {
         
-
+        
         lowValue = minimumValue
         highValue = maximumValue
         lowMaximumValue = Double.nan
         highMinimumValue = Double.nan
         
         
+        
         trackBackgroundImageView = UIImageView(frame: trackBackgroundRect())
-        trackBackgroundImageView.backgroundColor = .blue
+        trackBackgroundImageView.backgroundColor = .gray
         addSubview(self.trackBackgroundImageView)
         
-     
+        trackImageView = UIImageView()
+        addSubview(trackImageView)
+        
         
         lowHandle = UIImageView()
         addSubview(lowHandle)
@@ -108,7 +141,7 @@ class RangeSlider: UIControl {
             highHandle.isHighlighted = true
             highTouchOffset = Double(touchPoint.x - highHandle.center.x)
         }
-    
+        
         return true
     }
     
@@ -252,6 +285,22 @@ class RangeSlider: UIControl {
         setNeedsLayout()
     }
     
+    func trackRect() -> CGRect {
+        
+//        var rect = CGRect.zero
+        
+        let y = trackBackgroundRect().minY
+        let x = min(lowHandle.frame.minX, highHandle.frame.minX)
+        let h = trackBackgroundRect().height
+        let rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX)
+        let w = rightX - x
+        let rect = CGRect(x: x, y: y, width: w, height: h)
+        
+        
+        
+        return rect
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -261,6 +310,8 @@ class RangeSlider: UIControl {
         if hideHighHandle {
             highValue = maximumValue
         }
+        
+        
         
         if lowHandle.image == nil {
             lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: 31, height: 31))
@@ -277,6 +328,9 @@ class RangeSlider: UIControl {
             highHandle.frame = handleRectFor(value: highValue, size: highHandle.image!.size)
             backToImage(ball: highHandle)
         }
+        
+        trackImageView.image = trackImageForCurrentValues()
+        trackImageView.frame = trackRect()
         
     }
     
@@ -318,5 +372,5 @@ class RangeSlider: UIControl {
         ball.backgroundColor = .clear
         ball.layer.shadowColor = UIColor.clear.cgColor
     }
-
+    
 }
