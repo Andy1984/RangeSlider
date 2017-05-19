@@ -17,7 +17,7 @@ class RangeSlider: UIControl {
     /// default 1.0
     var maximumValue = 1.0
     
-    /// defalut 0.0 The minimum distance between the low value and high value
+    /// defalut 0.0, could be negative. The minimum distance between the low value and high value
     var minimumRange = 0.0
     
     var stepValueContinuously = false
@@ -29,18 +29,18 @@ class RangeSlider: UIControl {
     /// default = maximumValue
     var highValue = 0.0
     
-    ///  maximum value for left thumb
-    var lowMaximumValue = 0.0
+    ///  maximum value for left thumb, default nan
+    var lowMaximumValue = Double.nan
     
-    /// minimum value for right thumb
-    var highMinimumValue = 0.0
+    /// minimum value for right thumb, default nan
+    var highMinimumValue = Double.nan
     
     /// default is 2.0
     var sliderLineHeight = 2.0;
     
-    /// make left thumb easy to touch
+    /// make left thumb easy to touch. Default UIEdgeInsetsMake(-5, -5, -5, -5)
     var lowTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
-    /// make right thumb easy to touch
+    /// make right thumb easy to touch. Default UIEdgeInsetsMake(-5, -5, -5, -5)
     let highTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
     
     var trackImageView: UIImageView!
@@ -57,13 +57,12 @@ class RangeSlider: UIControl {
         return getImageFrom(view: v)
     }
     
-    func getImageFrom(view: UIView) -> UIImage {
-        UIGraphicsBeginImageContext(view.bounds.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenShot = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return screenShot!
-    }
+    
+    /// Default is nil, and use the shadow ball of system
+    var lowHandleImageNormal: UIImage?
+    var highHandImageNormal: UIImage?
+    var lowHandleImageHighlighted: UIImage?
+    var highHandleImageHighlighted: UIImage?
     
     
     var trackBackgroundImageView: UIImageView!
@@ -311,7 +310,10 @@ class RangeSlider: UIControl {
             highValue = maximumValue
         }
         
-        
+        lowHandle.image = lowHandleImageNormal
+        lowHandle.highlightedImage = lowHandleImageHighlighted
+        highHandle.image = highHandImageNormal
+        highHandle.highlightedImage = highHandleImageHighlighted
         
         if lowHandle.image == nil {
             lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: 31, height: 31))
@@ -331,6 +333,10 @@ class RangeSlider: UIControl {
         
         trackImageView.image = trackImageForCurrentValues()
         trackImageView.frame = trackRect()
+        
+        print(lowValue)
+        print(highValue)
+        print("----------------")
         
     }
     
@@ -371,6 +377,18 @@ class RangeSlider: UIControl {
         ball.layer.shadowOpacity = 0;
         ball.backgroundColor = .clear
         ball.layer.shadowColor = UIColor.clear.cgColor
+    }
+    
+    /// Convert view to image
+    ///
+    /// - Parameter view:
+    /// - Returns:
+    private func getImageFrom(view: UIView) -> UIImage {
+        UIGraphicsBeginImageContext(view.bounds.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return screenShot!
     }
     
 }

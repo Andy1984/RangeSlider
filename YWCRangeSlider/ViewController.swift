@@ -17,10 +17,6 @@ class ViewController: UIViewController {
         let slider = RangeSlider(frame: CGRect(x: 50, y: 50, width: 300, height: 50));
         view.addSubview(slider);
         slider.backgroundColor = .white;
-        
-        
-
-        
     }
 
     override func didReceiveMemoryWarning() {
