@@ -20,8 +20,16 @@ class RangeSlider: UIControl {
     /// defalut 0.0, could be negative. The minimum distance between the low value and high value
     var minimumRange = 0.0
     
+    /// default 0.0
+    var stepValue = 0.0
+
+    /// default false. If true, the slider ball will not move until it hit a new step.
     var stepValueContinuously = false
+
+    private var stepValueInternal = 0.0
     
+    /// default true. If false, it will not trigger valueChanged until the touch ends.
+    var changeValueContinously = true
     
     /// default 0.0
     var lowValue = 0.0
@@ -86,8 +94,6 @@ class RangeSlider: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var handleImage:UIImage?
-    
     func trackImageForCurrentValues() -> UIImage {
         if lowValue <= highValue {
             return trackImage
@@ -127,79 +133,7 @@ class RangeSlider: UIControl {
         
     }
     
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let touchPoint = touch.location(in: self)
-        let lowRect = UIEdgeInsetsInsetRect(lowHandle.frame, lowTouchEdgeInsets)
-        if lowRect.contains(touchPoint) {
-            lowHandle.isHighlighted = true
-            lowTouchOffset = Double(touchPoint.x - lowHandle.center.x)
-        }
-        
-        let highRect = UIEdgeInsetsInsetRect(highHandle.frame, highTouchEdgeInsets)
-        if highRect.contains(touchPoint) {
-            highHandle.isHighlighted = true
-            highTouchOffset = Double(touchPoint.x - highHandle.center.x)
-        }
-        
-        return true
-    }
     
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        if lowHandle.isHighlighted == false && highHandle.isHighlighted == false {
-            return true
-        }
-        let touchPoint = touch.location(in: self)
-        
-        
-        
-        
-        
-        if lowHandle.isHighlighted {
-            
-            let newValue = lowValueForCenterX(x: touchPoint.x.native - lowTouchOffset)
-            
-            if newValue < lowValue || !highHandle.isHighlighted {
-                highHandle.isHighlighted = false
-                bringSubview(toFront: lowHandle)
-                
-                let pointX = touchPoint.x.native
-                let low = lowValueForCenterX(x: pointX)
-                
-                setValue(low: low, high: Double.nan, animated: stepValueContinuously)
-                
-            } else {
-                lowHandle.isHighlighted = false
-            }
-            
-        }
-        
-        if highHandle.isHighlighted {
-            
-            let newValue = lowValueForCenterX(x: Double(touchPoint.x))
-            
-            if newValue > highValue || !lowHandle.isHighlighted {
-                
-                lowHandle.isHighlighted = false
-                bringSubview(toFront: highHandle)
-                
-                let pointX = touchPoint.x.native
-                let high = highValueForCenterX(x: pointX)
-                setValue(low: Double.nan, high: high, animated: stepValueContinuously)
-            } else {
-                highHandle.isHighlighted = false
-            }
-            
-            
-        }
-        
-        return true
-    }
-    
-    
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        lowHandle.isHighlighted = false
-        highHandle.isHighlighted = false
-    }
     
     
     
@@ -230,19 +164,18 @@ class RangeSlider: UIControl {
     }
     
     func setValue(low:Double, high:Double, animated:Bool) {
-        
-        
-        
         var duration = 0.0
         if animated {
             duration = 0.25
         }
         UIView.animate(withDuration: duration, delay: 0, options: .beginFromCurrentState, animations: {
             if !low.isNaN {
-                self.setlowValue(lowValue: low)
+                self.setLowValue(lowValue: low)
+                
             }
             if !high.isNaN {
-                self.sethighValue(highValue: high)
+                self.setHighValue(highValue: high)
+                
             }
             
         }) { (finished) in
@@ -251,14 +184,14 @@ class RangeSlider: UIControl {
     }
     
     func setLowValue(value:Double, animated:Bool) {
-        setValue(low: lowValue, high: Double.nan, animated: true)
+        setValue(low: value, high: Double.nan, animated: animated)
     }
     
     func setHighValue(value:Double, animated:Bool) {
-        setValue(low: Double.nan, high: value, animated: true)
+        setValue(low: Double.nan, high: value, animated: animated)
     }
     
-    func setlowValue(lowValue:Double) {
+    func setLowValue(lowValue:Double) {
         var value = lowValue
         value = min(value, maximumValue)
         value = max(value, minimumValue)
@@ -272,7 +205,7 @@ class RangeSlider: UIControl {
         setNeedsLayout()
     }
     
-    func sethighValue(highValue:Double) {
+    func setHighValue(highValue:Double) {
         var value = highValue
         value = max(value, minimumValue)
         value = min(value, maximumValue)
@@ -285,18 +218,12 @@ class RangeSlider: UIControl {
     }
     
     func trackRect() -> CGRect {
-        
-//        var rect = CGRect.zero
-        
         let y = trackBackgroundRect().minY
         let x = min(lowHandle.frame.minX, highHandle.frame.minX)
         let h = trackBackgroundRect().height
         let rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX)
         let w = rightX - x
         let rect = CGRect(x: x, y: y, width: w, height: h)
-        
-        
-        
         return rect
     }
     
@@ -333,10 +260,6 @@ class RangeSlider: UIControl {
         
         trackImageView.image = trackImageForCurrentValues()
         trackImageView.frame = trackRect()
-        
-        print(lowValue)
-        print(highValue)
-        print("----------------")
         
     }
     
@@ -390,5 +313,83 @@ class RangeSlider: UIControl {
         UIGraphicsEndImageContext();
         return screenShot!
     }
+    
+    // MARK: - override UIControl method
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        let lowRect = UIEdgeInsetsInsetRect(lowHandle.frame, lowTouchEdgeInsets)
+        if lowRect.contains(touchPoint) {
+            lowHandle.isHighlighted = true
+            lowTouchOffset = Double(touchPoint.x - lowHandle.center.x)
+        }
+        
+        let highRect = UIEdgeInsetsInsetRect(highHandle.frame, highTouchEdgeInsets)
+        if highRect.contains(touchPoint) {
+            highHandle.isHighlighted = true
+            highTouchOffset = Double(touchPoint.x - highHandle.center.x)
+        }
+        
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        if lowHandle.isHighlighted == false && highHandle.isHighlighted == false {
+            return true
+        }
+        let touchPoint = touch.location(in: self)
+        
+        if lowHandle.isHighlighted {
+            
+            let newValue = lowValueForCenterX(x: touchPoint.x.native - lowTouchOffset)
+            
+            if newValue < lowValue || !highHandle.isHighlighted {
+                highHandle.isHighlighted = false
+                bringSubview(toFront: lowHandle)
+                
+                let pointX = touchPoint.x.native
+                let low = lowValueForCenterX(x: pointX)
+                setLowValue(value: low, animated: stepValueContinuously)
+            } else {
+                lowHandle.isHighlighted = false
+            }
+            
+        }
+        
+        if highHandle.isHighlighted {
+            
+            let newValue = lowValueForCenterX(x: Double(touchPoint.x))
+            
+            if newValue > highValue || !lowHandle.isHighlighted {
+                
+                lowHandle.isHighlighted = false
+                bringSubview(toFront: highHandle)
+                
+                let pointX = touchPoint.x.native
+                let high = highValueForCenterX(x: pointX)
+                setHighValue(value: high, animated: stepValueContinuously)
+                
+            } else {
+                highHandle.isHighlighted = false
+            }
+        }
+        
+        if changeValueContinously {
+            sendActions(for: .valueChanged)
+        }
+        return true
+    }
+
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        lowHandle.isHighlighted = false
+        highHandle.isHighlighted = false
+        if stepValue > 0 {
+            stepValueInternal = stepValue
+            setLowValue(value: lowValue, animated: true)
+            setHighValue(value: highValue, animated: true)
+        }
+        sendActions(for: .valueChanged)
+    }
+    
+    
     
 }
