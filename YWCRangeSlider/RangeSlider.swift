@@ -31,11 +31,43 @@ class RangeSlider: UIControl {
     /// default true. If false, it will not trigger valueChanged until the touch ends.
     var changeValueContinously = true
     
+    private var _lowValue = 0.0
     /// default 0.0
-    var lowValue = 0.0
+    var lowValue: Double {
+        set {
+            var value = newValue
+            value = min(value, maximumValue)
+            value = max(value, minimumValue)
+            if !lowMaximumValue.isNaN {
+                value = min(value, lowMaximumValue)
+            }
+            value = min(value, highValue - minimumRange)
+            _lowValue = value
+            setNeedsLayout()
+        }
+        get {
+            return _lowValue
+        }
+    }
     
+    private var _highValue = 0.0
     /// default = maximumValue
-    var highValue = 0.0
+    var highValue:Double{
+        set {
+            var value = newValue
+            value = max(value, minimumValue)
+            value = min(value, maximumValue)
+            if !highMinimumValue.isNaN {
+                value = max(value, highMinimumValue)
+            }
+            value = max(value, lowValue + minimumRange)
+            _highValue = value
+            setNeedsLayout()
+        }
+        get {
+            return _highValue
+        }
+    }
     
     ///  maximum value for left thumb, default nan
     var lowMaximumValue = Double.nan
@@ -170,12 +202,10 @@ class RangeSlider: UIControl {
         }
         UIView.animate(withDuration: duration, delay: 0, options: .beginFromCurrentState, animations: {
             if !low.isNaN {
-                self.setLowValue(lowValue: low)
-                
+                self.lowValue = low
             }
             if !high.isNaN {
-                self.setHighValue(highValue: high)
-                
+                self.highValue = high
             }
             
         }) { (finished) in
@@ -189,32 +219,6 @@ class RangeSlider: UIControl {
     
     func setHighValue(value:Double, animated:Bool) {
         setValue(low: Double.nan, high: value, animated: animated)
-    }
-    
-    func setLowValue(lowValue:Double) {
-        var value = lowValue
-        value = min(value, maximumValue)
-        value = max(value, minimumValue)
-        
-        if !lowMaximumValue.isNaN {
-            value = min(value, lowMaximumValue)
-        }
-        value = min(value, highValue - minimumRange)
-        self.lowValue = value
-        
-        setNeedsLayout()
-    }
-    
-    func setHighValue(highValue:Double) {
-        var value = highValue
-        value = max(value, minimumValue)
-        value = min(value, maximumValue)
-        if !highMinimumValue.isNaN {
-            value = max(value, highMinimumValue)
-        }
-        value = max(value, lowValue + minimumRange)
-        self.highValue = value
-        setNeedsLayout()
     }
     
     func trackRect() -> CGRect {
