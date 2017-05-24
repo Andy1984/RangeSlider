@@ -24,8 +24,9 @@ class RangeSlider: UIControl {
     var stepValue = 0.0
 
     /// default false. If true, the slider ball will not move until it hit a new step.
-    var stepValueContinuously = false
+    var stepByStep = false
 
+    /// stepValueInternal = stepByStep ? stepValue : 0.0f;
     private var stepValueInternal = 0.0
     
     /// default true. If false, it will not trigger valueChanged until the touch ends.
@@ -36,6 +37,10 @@ class RangeSlider: UIControl {
     var lowValue: Double {
         set {
             var value = newValue
+            if stepValueInternal > 0 {
+                value = round(value / stepValueInternal) * stepValueInternal
+            }
+        
             value = min(value, maximumValue)
             value = max(value, minimumValue)
             if !lowMaximumValue.isNaN {
@@ -55,6 +60,9 @@ class RangeSlider: UIControl {
     var highValue:Double{
         set {
             var value = newValue
+            if stepValueInternal > 0 {
+                value = round(value / stepValueInternal) * stepValueInternal
+            }
             value = max(value, minimumValue)
             value = min(value, maximumValue)
             if !highMinimumValue.isNaN {
@@ -333,6 +341,8 @@ class RangeSlider: UIControl {
             highTouchOffset = Double(touchPoint.x - highHandle.center.x)
         }
         
+        stepValueInternal = stepByStep ? stepValue : 0.0;
+        
         return true
     }
     
@@ -352,7 +362,7 @@ class RangeSlider: UIControl {
                 
                 let pointX = touchPoint.x.native
                 let low = lowValueForCenterX(x: pointX)
-                setLowValue(value: low, animated: stepValueContinuously)
+                setLowValue(value: low, animated: stepByStep)
             } else {
                 lowHandle.isHighlighted = false
             }
@@ -370,7 +380,7 @@ class RangeSlider: UIControl {
                 
                 let pointX = touchPoint.x.native
                 let high = highValueForCenterX(x: pointX)
-                setHighValue(value: high, animated: stepValueContinuously)
+                setHighValue(value: high, animated: stepByStep)
                 
             } else {
                 highHandle.isHighlighted = false
