@@ -18,7 +18,7 @@ class RangeSlider: UIControl {
     var maximumValue = 1.0
     
     /// defalut 0.0, could be negative. The minimum distance between the low value and high value
-    var minimumRange = 0.0
+    var minimumDistance = 0.0
     
     /// default 0.0
     var stepValue = 0.0
@@ -46,7 +46,7 @@ class RangeSlider: UIControl {
             if !lowMaximumValue.isNaN {
                 value = min(value, lowMaximumValue)
             }
-            value = min(value, highValue - minimumRange)
+            value = min(value, highValue - minimumDistance)
             _lowValue = value
             setNeedsLayout()
         }
@@ -68,7 +68,7 @@ class RangeSlider: UIControl {
             if !highMinimumValue.isNaN {
                 value = max(value, highMinimumValue)
             }
-            value = max(value, lowValue + minimumRange)
+            value = max(value, lowValue + minimumDistance)
             _highValue = value
             setNeedsLayout()
         }
@@ -185,7 +185,7 @@ class RangeSlider: UIControl {
         
         //Inhabit setValue programmatically over range
         value = max(value, minimumValue)
-        value = min(value, highValue - minimumRange)
+        value = min(value, highValue - minimumDistance)
         
         return value
     }
@@ -198,7 +198,7 @@ class RangeSlider: UIControl {
         
         //Inhabit setValue programmatically over range
         value = min(value, maximumValue)
-        value = max(value, lowValue + minimumRange)
+        value = max(value, lowValue + minimumDistance)
         
         return value
     }

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         view.addSubview(basicSlider);
         
         let minimumRangeNegativeSlider = RangeSlider(frame: CGRect(x: 50, y: 64 + 50, width: 300, height: 50));
-        minimumRangeNegativeSlider.minimumRange = -1;
+        minimumRangeNegativeSlider.minimumDistance = -1;
         view.addSubview(minimumRangeNegativeSlider);
         
         let stepRangSlider = RangeSlider(frame: CGRect(x: 50, y: 64 + 100, width: 300, height: 50))
