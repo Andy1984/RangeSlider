@@ -32,8 +32,14 @@ class RangeSlider: UIControl {
     /// default true. If false, it will not trigger valueChanged until the touch ends.
     var changeValueContinously = true
     
-    var lowCenter: CGPoint = .zero
-    var highCenter: CGPoint = .zero
+    private var _lowCenter: CGPoint = .zero
+    private var _highCenter: CGPoint = .zero
+    var lowCenter: CGPoint {
+        return _lowCenter
+    }
+    var highCenter: CGPoint {
+        return _highCenter
+    }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "frame" {
@@ -41,9 +47,9 @@ class RangeSlider: UIControl {
                 return
             }
             if handle == lowHandle {
-                lowCenter = lowHandle.center
+                _lowCenter = lowHandle.center
             } else if handle == highHandle {
-                highCenter = highHandle.center
+                _highCenter = highHandle.center
             }
         }
     }
@@ -163,9 +169,7 @@ class RangeSlider: UIControl {
         }
     }
     
-    
-    
-    func configureViews() {
+    private func configureViews() {
         
         
         lowValue = minimumValue
