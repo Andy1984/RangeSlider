@@ -40,6 +40,19 @@ class RangeSlider: UIControl {
     var highCenter: CGPoint {
         return _highCenter
     }
+    var lowLabel: UILabel!
+    var highLabel: UILabel!
+    var isLabelHidden: Bool = false {
+        didSet {
+            if isLabelHidden == false {
+                lowLabel.isHidden = false
+                highLabel.isHidden = false
+            } else {
+                lowLabel.isHidden = true
+                highLabel.isHidden = true
+            }
+        }
+    }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "frame" {
@@ -48,11 +61,25 @@ class RangeSlider: UIControl {
             }
             if handle == lowHandle {
                 _lowCenter = lowHandle.center
+                
+                let p = CGPoint(x: lowCenter.x, y: lowCenter.y - 30)
+                
+                lowLabel.text = "\(lowValue)"
+                lowLabel.bounds.size = lowLabel.intrinsicContentSize
+                lowLabel.center = p
             } else if handle == highHandle {
                 _highCenter = highHandle.center
+                
+                let p = CGPoint(x: highCenter.x, y: highCenter.y - 30)
+                
+                highLabel.text = "\(highValue)"
+                highLabel.bounds.size = highLabel.intrinsicContentSize
+                highLabel.center = p
             }
         }
     }
+    
+    
     
     deinit {
         lowHandle.removeObserver(self, forKeyPath: "frame")
@@ -194,6 +221,12 @@ class RangeSlider: UIControl {
         lowHandle.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
         highHandle.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
         
+        lowLabel = UILabel()
+        addSubview(lowLabel)
+        lowLabel.textColor = .black
+        
+        highLabel = UILabel()
+        addSubview(highLabel)
         
         
     }

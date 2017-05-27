@@ -15,7 +15,8 @@ class ViewController: UIViewController {
         
         title = "YWCRangeSlider"
         
-        let basicSlider = RangeSlider(frame: CGRect(x: 50, y: 64, width: 300, height: 50));
+        let basicSlider = RangeSlider(frame: CGRect(x: 50, y: 264, width: 300, height: 50));
+        basicSlider.isLabelHidden = false
         view.addSubview(basicSlider);
         
         let minimumRangeNegativeSlider = RangeSlider(frame: CGRect(x: 50, y: 64 + 50, width: 300, height: 50));
