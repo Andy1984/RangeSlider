@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         let stepRangSlider = RangeSlider(frame: CGRect(x: 50, y: 64 + 100, width: 300, height: 50))
         stepRangSlider.stepValue = 0.2
-        stepRangSlider.stepByStep = true
+        stepRangSlider.isMovingStepByStep = true
         view.addSubview(stepRangSlider)
     }
     

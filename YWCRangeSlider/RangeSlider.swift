@@ -24,9 +24,9 @@ class RangeSlider: UIControl {
     var stepValue = 0.0
 
     /// default false. If true, the slider ball will not move until it hit a new step.
-    var stepByStep = false
+    var isMovingStepByStep = false
 
-    /// stepValueInternal = stepByStep ? stepValue : 0.0f;
+    /// stepValueInternal = isMovingStepByStep ? stepValue : 0.0f;
     private var stepValueInternal = 0.0
     
     /// default true. If false, it will not trigger valueChanged until the touch ends.
@@ -279,14 +279,6 @@ class RangeSlider: UIControl {
         }
     }
     
-    func setLowValue(value:Double, animated:Bool) {
-        setValue(low: value, high: Double.nan, animated: animated)
-    }
-    
-    func setHighValue(value:Double, animated:Bool) {
-        setValue(low: Double.nan, high: value, animated: animated)
-    }
-    
     func trackRect() -> CGRect {
         let y = trackBackgroundRect().minY
         let x = min(lowHandle.frame.minX, highHandle.frame.minX)
@@ -399,7 +391,7 @@ class RangeSlider: UIControl {
             highTouchOffset = Double(touchPoint.x - highHandle.center.x)
         }
         
-        stepValueInternal = stepByStep ? stepValue : 0.0;
+        stepValueInternal = isMovingStepByStep ? stepValue : 0.0;
         
         return true
     }
@@ -420,7 +412,7 @@ class RangeSlider: UIControl {
                 
                 let pointX = touchPoint.x.native
                 let low = lowValueForCenterX(x: pointX)
-                setLowValue(value: low, animated: stepByStep)
+                setValue(low: low, high: Double.nan, animated: isMovingStepByStep)
             } else {
                 lowHandle.isHighlighted = false
             }
@@ -438,7 +430,7 @@ class RangeSlider: UIControl {
                 
                 let pointX = touchPoint.x.native
                 let high = highValueForCenterX(x: pointX)
-                setHighValue(value: high, animated: stepByStep)
+                setValue(low: Double.nan, high: high, animated: isMovingStepByStep)
                 
             } else {
                 highHandle.isHighlighted = false
@@ -456,8 +448,7 @@ class RangeSlider: UIControl {
         highHandle.isHighlighted = false
         if stepValue > 0 {
             stepValueInternal = stepValue
-            setLowValue(value: lowValue, animated: true)
-            setHighValue(value: highValue, animated: true)
+            setValue(low: lowValue, high: highValue, animated: true)
         }
         sendActions(for: .valueChanged)
     }
