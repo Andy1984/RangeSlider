@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--YWCRangeSlider-->
         <scene sceneID="gtV-Ez-1LI">
             <objects>
                 <tableViewController id="YWQ-k2-Oig" customClass="ViewController" customModule="YWCRangeSlider" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,6 +26,13 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hxq-0H-fj5" id="Jit-br-kdb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-OR-E0t" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                    <rect key="frame" x="37" y="0.0" width="300" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -120,11 +127,14 @@
                             <outlet property="delegate" destination="YWQ-k2-Oig" id="JIy-EP-r0M"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="1Yq-XS-tm3"/>
+                    <navigationItem key="navigationItem" title="YWCRangeSlider" id="1Yq-XS-tm3"/>
+                    <connections>
+                        <outlet property="basicSlider" destination="cIg-OR-E0t" id="T8o-ja-x9b"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6Y-Uk-aJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="1299"/>
+            <point key="canvasLocation" x="596" y="1298.5007496251876"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eJg-KN-1R5">
