@@ -11,7 +11,16 @@ import UIKit
 class ViewController: UITableViewController {
 
     @IBOutlet weak var basicSlider: RangeSlider!
+    @IBOutlet weak var setValuesSlider: RangeSlider!
+    @IBAction func updateValues(_ sender: Any) {
+        let value1 = Double(arc4random())/Double(RAND_MAX)
+        let value2 = Double(arc4random())/Double(RAND_MAX)
+        // where 2 values are very close, the ball is 100% immobile.
+        // and it is not animated
+        setValuesSlider.setValue(low: min(value1, value2), high: max(value1, value2), animated: true)
+    }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
 //        title = "YWCRangeSlider"
