@@ -275,8 +275,8 @@ class RangeSlider: UIControl {
                 self.highValue = high
             }
             
+            self.layoutIfNeeded() // must include this line in the animation block
         }) { (finished) in
-            self.setNeedsLayout()
         }
     }
     

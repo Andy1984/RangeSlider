@@ -23,10 +23,10 @@ class ViewController: UITableViewController {
     
     
     @IBAction func updateValues(_ sender: Any) {
-        let value1 = Double(arc4random())/Double(RAND_MAX)
-        let value2 = Double(arc4random())/Double(RAND_MAX)
-        // where 2 values are very close, the ball is 100% immobile.
-        // and it is not animated
+        let value1 = Double(arc4random_uniform(100))/100.0
+        let value2 = Double(arc4random_uniform(100))/100.0
+        setValuesSlider.minimumValue = 0
+        setValuesSlider.maximumValue = 1
         setValuesSlider.setValue(low: min(value1, value2), high: max(value1, value2), animated: true)
     }
     override func viewDidLoad() {
