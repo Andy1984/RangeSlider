@@ -12,6 +12,16 @@ class ViewController: UITableViewController {
 
     @IBOutlet weak var basicSlider: RangeSlider!
     @IBOutlet weak var setValuesSlider: RangeSlider!
+    @IBOutlet weak var steppedSlider: RangeSlider!
+    @IBOutlet weak var stepByStepSlider: RangeSlider!
+    @IBOutlet weak var crossoverSlider: RangeSlider!
+    
+    
+    
+    
+    
+    
+    
     @IBAction func updateValues(_ sender: Any) {
         let value1 = Double(arc4random())/Double(RAND_MAX)
         let value2 = Double(arc4random())/Double(RAND_MAX)
@@ -23,20 +33,36 @@ class ViewController: UITableViewController {
         
         super.viewDidLoad()
         
-//        title = "YWCRangeSlider"
-//        
-//        let basicSlider = RangeSlider(frame: CGRect(x: 50, y: 264, width: 300, height: 50));
-//        basicSlider.isLabelHidden = false
-//        view.addSubview(basicSlider);
-//        
-//        let minimumRangeNegativeSlider = RangeSlider(frame: CGRect(x: 50, y: 64 + 50, width: 300, height: 50));
-//        minimumRangeNegativeSlider.minimumDistance = -1;
-//        view.addSubview(minimumRangeNegativeSlider);
-//        
-//        let stepRangSlider = RangeSlider(frame: CGRect(x: 50, y: 64 + 100, width: 300, height: 50))
-//        stepRangSlider.stepValue = 0.2
-//        stepRangSlider.isMovingStepByStep = true
-//        view.addSubview(stepRangSlider)
+        setupBasicSlider()
+        setupSetValuesAnimatedSlider()
+        setupSteppedSlider()
+        setupStepByStepSlider()
+        setupCrossoverSlider()
+    }
+    
+    func setupBasicSlider() {
+        basicSlider.minimumValue = 0
+        basicSlider.maximumValue = 1
+    }
+    
+    func setupSetValuesAnimatedSlider() {
+        setValuesSlider.lowMaximumValue = 0.5
+        setValuesSlider.highValue = 0.8
+    }
+    
+    func setupSteppedSlider() {
+        steppedSlider.stepValue = 0.2
+    }
+    
+    func setupStepByStepSlider() {
+        stepByStepSlider.stepValue = 0.2
+        stepByStepSlider.isMovingStepByStep = true
+    }
+    
+    func setupCrossoverSlider() {
+        crossoverSlider.maximumValue = 1
+        crossoverSlider.minimumValue = -1
+        crossoverSlider.minimumDistance = -2
     }
     
 }
