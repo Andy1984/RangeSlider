@@ -15,10 +15,21 @@ class ViewController: UITableViewController {
     @IBOutlet weak var steppedSlider: RangeSlider!
     @IBOutlet weak var stepByStepSlider: RangeSlider!
     @IBOutlet weak var crossoverSlider: RangeSlider!
+    @IBOutlet weak var programmaticSlider: RangeSlider!
     
     
     
-    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        setupBasicSlider()
+        setupSetValuesAnimatedSlider()
+        setupSteppedSlider()
+        setupStepByStepSlider()
+        setupCrossoverSlider()
+        setupProgrammaticSlider()
+    }
     
     
     
@@ -29,16 +40,7 @@ class ViewController: UITableViewController {
         setValuesSlider.maximumValue = 1
         setValuesSlider.setValue(low: min(value1, value2), high: max(value1, value2), animated: true)
     }
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        setupBasicSlider()
-        setupSetValuesAnimatedSlider()
-        setupSteppedSlider()
-        setupStepByStepSlider()
-        setupCrossoverSlider()
-    }
+    
     
     func setupBasicSlider() {
         basicSlider.minimumValue = 0
@@ -63,6 +65,11 @@ class ViewController: UITableViewController {
         crossoverSlider.maximumValue = 1
         crossoverSlider.minimumValue = -1
         crossoverSlider.minimumDistance = -2
+    }
+    
+    func setupProgrammaticSlider() {
+        programmaticSlider.lowValue = 0.3
+        programmaticSlider.highValue = 0.9
     }
     
 }

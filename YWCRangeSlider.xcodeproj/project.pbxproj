@@ -37,13 +37,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E439A63E1ECAF43800E60CBA /* images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
 		E48A6A331EC9A09300F17FCC = {
 			isa = PBXGroup;
 			children = (
@@ -63,7 +56,6 @@
 		E48A6A3E1EC9A09300F17FCC /* YWCRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
-				E439A63E1ECAF43800E60CBA /* images */,
 				E48A6A3F1EC9A09300F17FCC /* AppDelegate.swift */,
 				E48A6A411EC9A09300F17FCC /* ViewController.swift */,
 				E48A6A511EC9A45000F17FCC /* RangeSlider.swift */,
