@@ -147,10 +147,23 @@ class RangeSlider: UIControl {
     
     var trackImageView: UIImageView!
     
+    
+    private var _trackImage: UIImage?
+    
+    /// the image of value bar
     var trackImage: UIImage {
-        let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-        v.backgroundColor = .blue
-        return getImageFrom(view: v)
+        set {
+            
+            _trackImage = newValue
+        }
+        get {
+            if _trackImage == nil {
+                let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+                v.backgroundColor = .blue
+                return getImageFrom(view: v)
+            }
+            return _trackImage!
+        }
     }
     
     var trackCrossedImage: UIImage {

@@ -16,6 +16,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var stepByStepSlider: RangeSlider!
     @IBOutlet weak var crossoverSlider: RangeSlider!
     @IBOutlet weak var programmaticSlider: RangeSlider!
+    @IBOutlet weak var metalThemeSlider: RangeSlider!
     
     
     
@@ -29,9 +30,17 @@ class ViewController: UITableViewController {
         setupStepByStepSlider()
         setupCrossoverSlider()
         setupProgrammaticSlider()
+        setupMetalThemeSlider()
     }
     
-    
+    func setupMetalThemeSlider() {
+        metalThemeSlider.trackBackgroundImageView.image = #imageLiteral(resourceName: "slider-metal-trackBackground.png")
+        metalThemeSlider.trackImage = #imageLiteral(resourceName: "slider-metal-track.png")
+        metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "slider-metal-handle.png")
+        metalThemeSlider.highHandImageNormal = #imageLiteral(resourceName: "slider-metal-handle.png")
+        metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "slider-metal-handle-highlighted.png")
+        metalThemeSlider.highHandImageNormal = #imageLiteral(resourceName: "slider-metal-handle-highlighted.png")
+    }
     
     @IBAction func updateValues(_ sender: Any) {
         let value1 = Double(arc4random_uniform(100))/100.0
