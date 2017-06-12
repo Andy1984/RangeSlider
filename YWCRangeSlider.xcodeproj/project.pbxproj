@@ -13,14 +13,6 @@
 		E48A6A471EC9A09300F17FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E48A6A461EC9A09300F17FCC /* Assets.xcassets */; };
 		E48A6A4A1EC9A09300F17FCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E48A6A481EC9A09300F17FCC /* LaunchScreen.storyboard */; };
 		E48A6A521EC9A45000F17FCC /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48A6A511EC9A45000F17FCC /* RangeSlider.swift */; };
-		E4CD20071EEEA91600B7D004 /* slider-metal-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD1FFF1EEEA91600B7D004 /* slider-metal-handle-highlighted.png */; };
-		E4CD20081EEEA91600B7D004 /* slider-metal-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20001EEEA91600B7D004 /* slider-metal-handle-highlighted@2x.png */; };
-		E4CD20091EEEA91600B7D004 /* slider-metal-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20011EEEA91600B7D004 /* slider-metal-handle.png */; };
-		E4CD200A1EEEA91600B7D004 /* slider-metal-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20021EEEA91600B7D004 /* slider-metal-handle@2x.png */; };
-		E4CD200B1EEEA91600B7D004 /* slider-metal-track.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20031EEEA91600B7D004 /* slider-metal-track.png */; };
-		E4CD200C1EEEA91600B7D004 /* slider-metal-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20041EEEA91600B7D004 /* slider-metal-track@2x.png */; };
-		E4CD200D1EEEA91600B7D004 /* slider-metal-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20051EEEA91600B7D004 /* slider-metal-trackBackground.png */; };
-		E4CD200E1EEEA91600B7D004 /* slider-metal-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20061EEEA91600B7D004 /* slider-metal-trackBackground@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,14 +24,6 @@
 		E48A6A491EC9A09300F17FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E48A6A4B1EC9A09300F17FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E48A6A511EC9A45000F17FCC /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
-		E4CD1FFF1EEEA91600B7D004 /* slider-metal-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle-highlighted.png"; sourceTree = "<group>"; };
-		E4CD20001EEEA91600B7D004 /* slider-metal-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle-highlighted@2x.png"; sourceTree = "<group>"; };
-		E4CD20011EEEA91600B7D004 /* slider-metal-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle.png"; sourceTree = "<group>"; };
-		E4CD20021EEEA91600B7D004 /* slider-metal-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-handle@2x.png"; sourceTree = "<group>"; };
-		E4CD20031EEEA91600B7D004 /* slider-metal-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-track.png"; sourceTree = "<group>"; };
-		E4CD20041EEEA91600B7D004 /* slider-metal-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-track@2x.png"; sourceTree = "<group>"; };
-		E4CD20051EEEA91600B7D004 /* slider-metal-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground.png"; sourceTree = "<group>"; };
-		E4CD20061EEEA91600B7D004 /* slider-metal-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +56,6 @@
 		E48A6A3E1EC9A09300F17FCC /* YWCRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
-				E4CD1FFE1EEEA91600B7D004 /* MetalTheme */,
 				E48A6A3F1EC9A09300F17FCC /* AppDelegate.swift */,
 				E48A6A411EC9A09300F17FCC /* ViewController.swift */,
 				E48A6A511EC9A45000F17FCC /* RangeSlider.swift */,
@@ -82,21 +65,6 @@
 				E48A6A4B1EC9A09300F17FCC /* Info.plist */,
 			);
 			path = YWCRangeSlider;
-			sourceTree = "<group>";
-		};
-		E4CD1FFE1EEEA91600B7D004 /* MetalTheme */ = {
-			isa = PBXGroup;
-			children = (
-				E4CD1FFF1EEEA91600B7D004 /* slider-metal-handle-highlighted.png */,
-				E4CD20001EEEA91600B7D004 /* slider-metal-handle-highlighted@2x.png */,
-				E4CD20011EEEA91600B7D004 /* slider-metal-handle.png */,
-				E4CD20021EEEA91600B7D004 /* slider-metal-handle@2x.png */,
-				E4CD20031EEEA91600B7D004 /* slider-metal-track.png */,
-				E4CD20041EEEA91600B7D004 /* slider-metal-track@2x.png */,
-				E4CD20051EEEA91600B7D004 /* slider-metal-trackBackground.png */,
-				E4CD20061EEEA91600B7D004 /* slider-metal-trackBackground@2x.png */,
-			);
-			path = MetalTheme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,17 +127,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4CD200E1EEEA91600B7D004 /* slider-metal-trackBackground@2x.png in Resources */,
-				E4CD200D1EEEA91600B7D004 /* slider-metal-trackBackground.png in Resources */,
-				E4CD20071EEEA91600B7D004 /* slider-metal-handle-highlighted.png in Resources */,
 				E48A6A4A1EC9A09300F17FCC /* LaunchScreen.storyboard in Resources */,
-				E4CD200A1EEEA91600B7D004 /* slider-metal-handle@2x.png in Resources */,
 				E48A6A471EC9A09300F17FCC /* Assets.xcassets in Resources */,
-				E4CD200C1EEEA91600B7D004 /* slider-metal-track@2x.png in Resources */,
 				E48A6A451EC9A09300F17FCC /* Main.storyboard in Resources */,
-				E4CD20091EEEA91600B7D004 /* slider-metal-handle.png in Resources */,
-				E4CD200B1EEEA91600B7D004 /* slider-metal-track.png in Resources */,
-				E4CD20081EEEA91600B7D004 /* slider-metal-handle-highlighted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

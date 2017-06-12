@@ -196,7 +196,6 @@ class RangeSlider: UIControl {
         configureViews()
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configureViews()
