@@ -142,9 +142,13 @@ class RangeSlider: UIControl {
     /// make right thumb easy to touch. Default UIEdgeInsetsMake(-5, -5, -5, -5)
     let highTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
     
-    var trackImageView: UIImageView!
+    /// the imageView of value bar
+    private var trackImageView: UIImageView!
     
     private var _trackImage: UIImage?
+    
+    /// the length of default ball
+    private let systemBallLength: CGFloat = 31.0
     
     /// the image of value bar
     var trackImage: UIImage {
@@ -162,6 +166,7 @@ class RangeSlider: UIControl {
         }
     }
     
+    /// the image of value bar when crossed
     var trackCrossedImage: UIImage {
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         v.backgroundColor = .red
@@ -170,12 +175,12 @@ class RangeSlider: UIControl {
     
     /// Default is nil, and use the shadow ball of system
     var lowHandleImageNormal: UIImage?
-    var highHandImageNormal: UIImage?
+    var highHandleImageNormal: UIImage?
     var lowHandleImageHighlighted: UIImage?
     var highHandleImageHighlighted: UIImage?
     
     var trackBackgroundImage: UIImage?
-    var trackBackgroundImageView: UIImageView!
+    private var trackBackgroundImageView: UIImageView!
     var lowHandle: UIImageView!
     var highHandle: UIImageView!
     
@@ -277,11 +282,18 @@ class RangeSlider: UIControl {
         }
     }
     
+    private var lowHandleWidth: CGFloat {
+        return lowHandle.image?.size.width ?? systemBallLength
+    }
+    private var highHandleWidth: CGFloat {
+        return highHandle.image?.size.width ?? systemBallLength
+    }
+    
     func trackRect() -> CGRect {
         let y = trackBackgroundRect().minY
-        let x = min(lowHandle.frame.minX, highHandle.frame.minX)
+        let x = min(lowHandle.frame.minX, highHandle.frame.minX) + lowHandleWidth / 2
         let h = trackBackgroundRect().height
-        let rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX)
+        let rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX) - highHandleWidth / 2
         let w = rightX - x
         let rect = CGRect(x: x, y: y, width: w, height: h)
         return rect
@@ -299,11 +311,11 @@ class RangeSlider: UIControl {
         
         lowHandle.image = lowHandleImageNormal
         lowHandle.highlightedImage = lowHandleImageHighlighted
-        highHandle.image = highHandImageNormal
+        highHandle.image = highHandleImageNormal
         highHandle.highlightedImage = highHandleImageHighlighted
         
         if lowHandle.image == nil {
-            lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: 31, height: 31))
+            lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: systemBallLength, height: systemBallLength))
             becomeSystemBall(ball: lowHandle)
         } else {
             lowHandle.frame = handleRectFor(value: lowValue, size: lowHandle.image!.size)
@@ -311,7 +323,7 @@ class RangeSlider: UIControl {
         }
         
         if highHandle.image == nil {
-            highHandle.frame = handleRectFor(value: highValue, size: CGSize(width: 31, height: 31))
+            highHandle.frame = handleRectFor(value: highValue, size: CGSize(width: systemBallLength, height: systemBallLength))
             becomeSystemBall(ball: highHandle)
         } else {
             highHandle.frame = handleRectFor(value: highValue, size: highHandle.image!.size)
@@ -324,12 +336,19 @@ class RangeSlider: UIControl {
     }
     
     func trackBackgroundRect() -> CGRect {
-        
-        let x = 0.0
-        let y = (Double(frame.size.height) - sliderLineHeight) / 2
-        let width = Double(self.frame.size.width)
-        let height = sliderLineHeight
-        return CGRect(x: x, y: y, width: width, height: height)
+        if (self.trackBackgroundImage != nil) {
+            let x:Double = 0.0
+            let y:Double = Double(self.frame.size.height - trackBackgroundImage!.size.height) / 2
+            let width:Double = Double(self.frame.size.width)
+            let height:Double = Double(trackBackgroundImage!.size.height)
+            return CGRect(x: x, y: y, width: width, height: height)
+        } else {
+            let x = 0.0
+            let y = (Double(frame.size.height) - sliderLineHeight) / 2
+            let width = Double(self.frame.size.width)
+            let height = sliderLineHeight
+            return CGRect(x: x, y: y, width: width, height: height)
+        }
     }
     
     func handleRectFor(value: Double, size: CGSize) -> CGRect {
@@ -344,7 +363,7 @@ class RangeSlider: UIControl {
     }
     
     private func becomeSystemBall(ball: UIImageView) {
-        ball.layer.cornerRadius = 31 / 2
+        ball.layer.cornerRadius = systemBallLength / 2
         ball.layer.shadowOffset = CGSize(width: 0, height: 2)
         ball.layer.shadowOpacity = 0.5
         ball.backgroundColor = .white
