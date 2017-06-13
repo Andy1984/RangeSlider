@@ -135,7 +135,7 @@ class RangeSlider: UIControl {
     var highMinimumValue = Double.nan
     
     /// default is 2.0
-    var sliderLineHeight = 2.0
+    private var sliderLineHeight = 2.0
     
     /// make left thumb easy to touch. Default UIEdgeInsetsMake(-5, -5, -5, -5)
     var lowTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
@@ -221,7 +221,10 @@ class RangeSlider: UIControl {
         highMinimumValue = Double.nan
         
         trackBackgroundImageView = UIImageView(frame: trackBackgroundRect())
-        trackBackgroundImageView.backgroundColor = .gray
+        let grayView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        grayView.backgroundColor = .gray
+        let grayImage = getImageFrom(view: grayView)
+        trackBackgroundImageView.image = grayImage
         addSubview(self.trackBackgroundImageView)
         
         trackImageView = UIImageView()
