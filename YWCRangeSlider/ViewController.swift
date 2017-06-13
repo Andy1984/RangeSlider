@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UITableViewController {
-
+    
     @IBOutlet weak var basicSlider: RangeSlider!
     @IBOutlet weak var setValuesSlider: RangeSlider!
     @IBOutlet weak var steppedSlider: RangeSlider!
@@ -17,8 +17,6 @@ class ViewController: UITableViewController {
     @IBOutlet weak var crossoverSlider: RangeSlider!
     @IBOutlet weak var programmaticSlider: RangeSlider!
     @IBOutlet weak var metalThemeSlider: RangeSlider!
-    
-    
     
     override func viewDidLoad() {
         
@@ -34,8 +32,8 @@ class ViewController: UITableViewController {
     }
     
     func setupMetalThemeSlider() {
-        metalThemeSlider.trackBackgroundImageView.image = #imageLiteral(resourceName: "slider-metal-trackBackground.png")
-        metalThemeSlider.trackImage = #imageLiteral(resourceName: "slider-metal-track.png")
+        metalThemeSlider.trackBackgroundImageView.image = #imageLiteral(resourceName: "slider-metal-trackBackground.png").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        metalThemeSlider.trackImage = #imageLiteral(resourceName: "slider-metal-track.png").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 7, 0, 7))
         metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "slider-metal-handle.png")
         metalThemeSlider.highHandImageNormal = #imageLiteral(resourceName: "slider-metal-handle.png")
         metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "slider-metal-handle-highlighted.png")
@@ -43,13 +41,12 @@ class ViewController: UITableViewController {
     }
     
     @IBAction func updateValues(_ sender: Any) {
-        let value1 = Double(arc4random_uniform(100))/100.0
-        let value2 = Double(arc4random_uniform(100))/100.0
+        let value1 = Double(arc4random_uniform(100)) / 100.0
+        let value2 = Double(arc4random_uniform(100)) / 100.0
         setValuesSlider.minimumValue = 0
         setValuesSlider.maximumValue = 1
         setValuesSlider.setValue(low: min(value1, value2), high: max(value1, value2), animated: true)
     }
-    
     
     func setupBasicSlider() {
         basicSlider.minimumValue = 0

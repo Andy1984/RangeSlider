@@ -10,7 +10,6 @@ import UIKit
 
 class RangeSlider: UIControl {
     
-    
     /// default 0.0
     var minimumValue = 0.0
     
@@ -22,10 +21,10 @@ class RangeSlider: UIControl {
     
     /// default 0.0
     var stepValue = 0.0
-
+    
     /// default false. If true, the slider ball will not move until it hit a new step.
     var isMovingStepByStep = false
-
+    
     /// stepValueInternal = isMovingStepByStep ? stepValue : 0.0f;
     private var stepValueInternal = 0.0
     
@@ -54,7 +53,7 @@ class RangeSlider: UIControl {
         }
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "frame" {
             guard let handle = object as? UIImageView else {
                 return
@@ -79,8 +78,6 @@ class RangeSlider: UIControl {
         }
     }
     
-    
-    
     deinit {
         lowHandle.removeObserver(self, forKeyPath: "frame")
         highHandle.removeObserver(self, forKeyPath: "frame")
@@ -94,7 +91,7 @@ class RangeSlider: UIControl {
             if stepValueInternal > 0 {
                 value = round(value / stepValueInternal) * stepValueInternal
             }
-        
+            
             value = min(value, maximumValue)
             value = max(value, minimumValue)
             if !lowMaximumValue.isNaN {
@@ -111,7 +108,7 @@ class RangeSlider: UIControl {
     
     private var _highValue = 0.0
     /// default = maximumValue
-    var highValue:Double{
+    var highValue: Double {
         set {
             var value = newValue
             if stepValueInternal > 0 {
@@ -138,7 +135,7 @@ class RangeSlider: UIControl {
     var highMinimumValue = Double.nan
     
     /// default is 2.0
-    var sliderLineHeight = 2.0;
+    var sliderLineHeight = 2.0
     
     /// make left thumb easy to touch. Default UIEdgeInsetsMake(-5, -5, -5, -5)
     var lowTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
@@ -146,7 +143,6 @@ class RangeSlider: UIControl {
     let highTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
     
     var trackImageView: UIImageView!
-    
     
     private var _trackImage: UIImage?
     
@@ -172,14 +168,13 @@ class RangeSlider: UIControl {
         return getImageFrom(view: v)
     }
     
-    
     /// Default is nil, and use the shadow ball of system
     var lowHandleImageNormal: UIImage?
     var highHandImageNormal: UIImage?
     var lowHandleImageHighlighted: UIImage?
     var highHandleImageHighlighted: UIImage?
     
-    
+    var trackBackgroundImage: UIImage?
     var trackBackgroundImageView: UIImageView!
     var lowHandle: UIImageView!
     var highHandle: UIImageView!
@@ -189,7 +184,6 @@ class RangeSlider: UIControl {
     
     private var lowTouchOffset = 0.0
     private var highTouchOffset = 0.0
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -211,13 +205,10 @@ class RangeSlider: UIControl {
     
     private func configureViews() {
         
-        
         lowValue = minimumValue
         highValue = maximumValue
         lowMaximumValue = Double.nan
         highMinimumValue = Double.nan
-        
-        
         
         trackBackgroundImageView = UIImageView(frame: trackBackgroundRect())
         trackBackgroundImageView.backgroundColor = .gray
@@ -225,7 +216,6 @@ class RangeSlider: UIControl {
         
         trackImageView = UIImageView()
         addSubview(trackImageView)
-        
         
         lowHandle = UIImageView()
         addSubview(lowHandle)
@@ -241,40 +231,35 @@ class RangeSlider: UIControl {
         highLabel = UILabel()
         addSubview(highLabel)
         
-        
     }
     
-    
-    
-    
-    
-    func lowValueForCenterX(x:Double) -> Double {
-        let padding = Double(lowHandle.frame.size.width/2.0)
+    func lowValueForCenterX(x: Double) -> Double {
+        let padding = Double(lowHandle.frame.size.width / 2.0)
         let valueGap = maximumValue - minimumValue
         let lengthMinusPadding = Double(self.frame.size.width) - padding * 2
-        var value:Double = minimumValue + (x - padding) / lengthMinusPadding * valueGap
+        var value: Double = minimumValue + (x - padding) / lengthMinusPadding * valueGap
         
-        //Inhabit setValue programmatically over range
+        // Inhabit setValue programmatically over range
         value = max(value, minimumValue)
         value = min(value, highValue - minimumDistance)
         
         return value
     }
     
-    func highValueForCenterX(x:Double) -> Double {
-        let padding = Double(highHandle.frame.size.width/2.0)
+    func highValueForCenterX(x: Double) -> Double {
+        let padding = Double(highHandle.frame.size.width / 2.0)
         let valueGap = maximumValue - minimumValue
         let lengthMinusPadding = Double(self.frame.size.width) - padding * 2
-        var value:Double = minimumValue + (x - padding) / lengthMinusPadding * valueGap
+        var value: Double = minimumValue + (x - padding) / lengthMinusPadding * valueGap
         
-        //Inhabit setValue programmatically over range
+        // Inhabit setValue programmatically over range
         value = min(value, maximumValue)
         value = max(value, lowValue + minimumDistance)
         
         return value
     }
     
-    func setValue(low:Double, high:Double, animated:Bool) {
+    func setValue(low: Double, high: Double, animated: Bool) {
         var duration = 0.0
         if animated {
             duration = 0.25
@@ -288,7 +273,7 @@ class RangeSlider: UIControl {
             }
             
             self.layoutIfNeeded() // must include this line in the animation block
-        }) { (finished) in
+        }) { _ in
         }
     }
     
@@ -339,40 +324,37 @@ class RangeSlider: UIControl {
     }
     
     func trackBackgroundRect() -> CGRect {
+        
         let x = 0.0
-        let y = (Double(frame.size.height) - sliderLineHeight)/2
+        let y = (Double(frame.size.height) - sliderLineHeight) / 2
         let width = Double(self.frame.size.width)
         let height = sliderLineHeight
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
-    func handleRectFor(value:Double, size: CGSize) -> CGRect {
+    func handleRectFor(value: Double, size: CGSize) -> CGRect {
         var handleRect = CGRect(origin: CGPoint.zero, size: size)
         
-        
-        
         let xValue = Double(self.bounds.size.width - handleRect.size.width) * (value - minimumValue) / (maximumValue - minimumValue)
-        let originY = Double(self.bounds.size.height)/2.0 - Double(handleRect.size.height)/2
+        let originY = Double(self.bounds.size.height) / 2.0 - Double(handleRect.size.height) / 2
         
-        
-        let originPoint = CGPoint(x: xValue, y:originY)
+        let originPoint = CGPoint(x: xValue, y: originY)
         handleRect.origin = originPoint
         return handleRect.integral
     }
     
-    
-    private func becomeSystemBall(ball:UIImageView) {
-        ball.layer.cornerRadius = 31/2;
-        ball.layer.shadowOffset = CGSize(width:0, height:2);
-        ball.layer.shadowOpacity = 0.5;
+    private func becomeSystemBall(ball: UIImageView) {
+        ball.layer.cornerRadius = 31 / 2
+        ball.layer.shadowOffset = CGSize(width: 0, height: 2)
+        ball.layer.shadowOpacity = 0.5
         ball.backgroundColor = .white
         ball.layer.shadowColor = UIColor.black.cgColor
     }
     
-    private func backToImage(ball:UIImageView) {
-        ball.layer.cornerRadius = 0;
-        ball.layer.shadowOffset = CGSize.zero;
-        ball.layer.shadowOpacity = 0;
+    private func backToImage(ball: UIImageView) {
+        ball.layer.cornerRadius = 0
+        ball.layer.shadowOffset = CGSize.zero
+        ball.layer.shadowOpacity = 0
         ball.backgroundColor = .clear
         ball.layer.shadowColor = UIColor.clear.cgColor
     }
@@ -384,8 +366,8 @@ class RangeSlider: UIControl {
     private func getImageFrom(view: UIView) -> UIImage {
         UIGraphicsBeginImageContext(view.bounds.size)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenShot = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         return screenShot!
     }
     
@@ -404,7 +386,7 @@ class RangeSlider: UIControl {
             highTouchOffset = Double(touchPoint.x - highHandle.center.x)
         }
         
-        stepValueInternal = isMovingStepByStep ? stepValue : 0.0;
+        stepValueInternal = isMovingStepByStep ? stepValue : 0.0
         
         return true
     }
@@ -455,7 +437,7 @@ class RangeSlider: UIControl {
         }
         return true
     }
-
+    
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         lowHandle.isHighlighted = false
         highHandle.isHighlighted = false
@@ -465,7 +447,5 @@ class RangeSlider: UIControl {
         }
         sendActions(for: .valueChanged)
     }
-    
-    
     
 }
