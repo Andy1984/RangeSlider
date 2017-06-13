@@ -179,7 +179,12 @@ class RangeSlider: UIControl {
     var lowHandleImageHighlighted: UIImage?
     var highHandleImageHighlighted: UIImage?
     
-    var trackBackgroundImage: UIImage?
+    var trackBackgroundImage: UIImage? {
+        didSet {
+            self.trackBackgroundImageView.image = trackBackgroundImage
+            self.trackBackgroundImageView.frame = trackBackgroundRect()
+        }
+    }
     private var trackBackgroundImageView: UIImageView!
     var lowHandle: UIImageView!
     var highHandle: UIImageView!
