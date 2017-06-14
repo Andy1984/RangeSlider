@@ -32,8 +32,8 @@ class ViewController: UITableViewController {
     }
     
     func setupCustomThemeSlider() {
-        customThemeSlider.trackBackgroundImage = #imageLiteral(resourceName: "empty").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
-        customThemeSlider.trackImage = #imageLiteral(resourceName: "full").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        customThemeSlider.trackBackgroundImage = #imageLiteral(resourceName: "hollowProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        customThemeSlider.trackImage = #imageLiteral(resourceName: "solidProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
         customThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
         customThemeSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "kiss")
         customThemeSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
