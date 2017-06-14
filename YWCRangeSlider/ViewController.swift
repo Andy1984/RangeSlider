@@ -17,6 +17,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var crossoverSlider: RangeSlider!
     @IBOutlet weak var programmaticSlider: RangeSlider!
     @IBOutlet weak var customThemeSlider: RangeSlider!
+    @IBOutlet weak var singleThumbSlider: RangeSlider!
     
     override func viewDidLoad() {
         
@@ -29,6 +30,7 @@ class ViewController: UITableViewController {
         setupCrossoverSlider()
         setupProgrammaticSlider()
         setupCustomThemeSlider()
+        setupSingleThumbSlider()
     }
     
     func setupCustomThemeSlider() {
@@ -76,6 +78,16 @@ class ViewController: UITableViewController {
     func setupProgrammaticSlider() {
         programmaticSlider.lowValue = 0.3
         programmaticSlider.highValue = 0.9
+    }
+    
+    func setupSingleThumbSlider() {
+        
+        singleThumbSlider.highValue = 0.3
+        singleThumbSlider.highHandleImageNormal = #imageLiteral(resourceName: "smile")
+        singleThumbSlider.trackBackgroundImage = #imageLiteral(resourceName: "hollowProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        singleThumbSlider.trackImage = #imageLiteral(resourceName: "solidProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        singleThumbSlider.isLowHandleHidden = true
+        
     }
     
 }

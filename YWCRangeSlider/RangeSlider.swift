@@ -31,6 +31,20 @@ class RangeSlider: UIControl {
     /// default true. If false, it will not trigger valueChanged until the touch ends.
     var changeValueContinously = true
     
+    /// default false
+    var isLowHandleHidden = false {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    /// default false
+    var isHighHandleHidden = false {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
     private var _lowCenter: CGPoint = .zero
     private var _highCenter: CGPoint = .zero
     var lowCenter: CGPoint {
@@ -83,6 +97,7 @@ class RangeSlider: UIControl {
         highHandle.removeObserver(self, forKeyPath: "frame")
     }
     
+    /// setLowValue would call layoutSubviews, must not call setLowValue in the layoutSubviews
     private var _lowValue = 0.0
     /// default 0.0
     var lowValue: Double {
@@ -106,6 +121,7 @@ class RangeSlider: UIControl {
         }
     }
     
+    /// setHighValue would call layoutSubviews, must not call setHighValue in the layoutSubviews
     private var _highValue = 0.0
     /// default = maximumValue
     var highValue: Double {
@@ -145,33 +161,14 @@ class RangeSlider: UIControl {
     /// the imageView of value bar
     private var trackImageView: UIImageView!
     
-    private var _trackImage: UIImage?
-    
     /// the length of default ball
     private let systemBallLength: CGFloat = 31.0
     
     /// the image of value bar
-    var trackImage: UIImage {
-        set {
-            
-            _trackImage = newValue
-        }
-        get {
-            if _trackImage == nil {
-                let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-                v.backgroundColor = .blue
-                return getImageFrom(view: v)
-            }
-            return _trackImage!
-        }
-    }
+    var trackImage = getImageWithColor(color: .blue)
     
     /// the image of value bar when crossed
-    var trackCrossedImage: UIImage {
-        let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-        v.backgroundColor = .red
-        return getImageFrom(view: v)
-    }
+    var trackCrossedImage = getImageWithColor(color: .red)
     
     /// Default is nil, and use the shadow ball of system
     var lowHandleImageNormal: UIImage?
@@ -186,11 +183,11 @@ class RangeSlider: UIControl {
         }
     }
     private var trackBackgroundImageView: UIImageView!
-    var lowHandle: UIImageView!
-    var highHandle: UIImageView!
     
-    var hideLowHandle = false
-    var hideHighHandle = false
+    /// Keep it private, given that it is useless to change its image directly
+    private var lowHandle: UIImageView!
+    /// Keep it private, given that it is useless to change its image directly
+    private var highHandle: UIImageView!
     
     private var lowTouchOffset = 0.0
     private var highTouchOffset = 0.0
@@ -215,8 +212,8 @@ class RangeSlider: UIControl {
     
     private func configureViews() {
         
-        lowValue = minimumValue
-        highValue = maximumValue
+        _lowValue = minimumValue
+        _highValue = maximumValue
         lowMaximumValue = Double.nan
         highMinimumValue = Double.nan
         
@@ -284,25 +281,36 @@ class RangeSlider: UIControl {
             if !high.isNaN {
                 self.highValue = high
             }
-            
             self.layoutIfNeeded() // must include this line in the animation block
         }) { _ in
         }
     }
     
+    
+    /// Maybe not necessary
     private var lowHandleWidth: CGFloat {
         return lowHandle.image?.size.width ?? systemBallLength
     }
+    
+    /// Maybe not necessary
     private var highHandleWidth: CGFloat {
         return highHandle.image?.size.width ?? systemBallLength
     }
     
     func trackRect() -> CGRect {
         let y = trackBackgroundRect().minY
-        let x = min(lowHandle.frame.minX, highHandle.frame.minX) + lowHandleWidth / 2
+        var x = min(lowHandle.frame.minX, highHandle.frame.minX) + lowHandleWidth / 2
         let h = trackBackgroundRect().height
-        let rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX) - highHandleWidth / 2
-        let w = rightX - x
+        var rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX) - highHandleWidth / 2
+        var w = rightX - x
+        if isLowHandleHidden == true {
+            x = 0
+            w = rightX
+        }
+        if isHighHandleHidden == true {
+            rightX = max(lowHandle.frame.maxX, highHandle.frame.maxX)
+            w = rightX - x
+        }
         let rect = CGRect(x: x, y: y, width: w, height: h)
         return rect
     }
@@ -310,18 +318,19 @@ class RangeSlider: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if hideLowHandle {
-            lowValue = minimumValue
+        if isLowHandleHidden {
+            _lowValue = minimumValue
         }
-        if hideHighHandle {
-            highValue = maximumValue
+        if isHighHandleHidden {
+            _highValue = maximumValue
         }
         
+        
+        
+        // lowHandle
         lowHandle.image = lowHandleImageNormal
         lowHandle.highlightedImage = lowHandleImageHighlighted
-        highHandle.image = highHandleImageNormal
-        highHandle.highlightedImage = highHandleImageHighlighted
-        
+        lowHandle.isHidden = isLowHandleHidden
         if lowHandle.image == nil {
             lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: systemBallLength, height: systemBallLength))
             becomeSystemBall(ball: lowHandle)
@@ -330,6 +339,10 @@ class RangeSlider: UIControl {
             backToImage(ball: lowHandle)
         }
         
+        // highHandle
+        highHandle.image = highHandleImageNormal
+        highHandle.highlightedImage = highHandleImageHighlighted
+        highHandle.isHidden = isHighHandleHidden
         if highHandle.image == nil {
             highHandle.frame = handleRectFor(value: highValue, size: CGSize(width: systemBallLength, height: systemBallLength))
             becomeSystemBall(ball: highHandle)
@@ -337,6 +350,7 @@ class RangeSlider: UIControl {
             highHandle.frame = handleRectFor(value: highValue, size: highHandle.image!.size)
             backToImage(ball: highHandle)
         }
+        
         
         trackImageView.image = trackImageForCurrentValues()
         trackImageView.frame = trackRect()
@@ -386,17 +400,7 @@ class RangeSlider: UIControl {
         ball.layer.shadowColor = UIColor.clear.cgColor
     }
     
-    /// Convert view to image
-    ///
-    /// - Parameter view:
-    /// - Returns:
-    private func getImageFrom(view: UIView) -> UIImage {
-        UIGraphicsBeginImageContext(view.bounds.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return screenShot!
-    }
+    
     
     // MARK: - override UIControl method
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -475,4 +479,22 @@ class RangeSlider: UIControl {
         sendActions(for: .valueChanged)
     }
     
+}
+
+/// Convert view to image
+///
+/// - Parameter view:
+/// - Returns:
+fileprivate func getImageFrom(view: UIView) -> UIImage {
+    UIGraphicsBeginImageContext(view.bounds.size)
+    view.layer.render(in: UIGraphicsGetCurrentContext()!)
+    let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return screenShot!
+}
+
+fileprivate func getImageWithColor(color: UIColor) -> UIImage {
+    let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+    v.backgroundColor = .blue
+    return getImageFrom(view: v)
 }
