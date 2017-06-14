@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class RangeSlider: UIControl {
     
     /// default 0.0
@@ -481,11 +482,8 @@ class RangeSlider: UIControl {
     
 }
 
-/// Convert view to image
-///
-/// - Parameter view:
-/// - Returns:
-fileprivate func getImageFrom(view: UIView) -> UIImage {
+/// convert view to image
+private func getImageFrom(view: UIView) -> UIImage {
     UIGraphicsBeginImageContext(view.bounds.size)
     view.layer.render(in: UIGraphicsGetCurrentContext()!)
     let screenShot = UIGraphicsGetImageFromCurrentImageContext()
@@ -493,7 +491,8 @@ fileprivate func getImageFrom(view: UIView) -> UIImage {
     return screenShot!
 }
 
-fileprivate func getImageWithColor(color: UIColor) -> UIImage {
+/// create a 1 x 1 image with color
+private func getImageWithColor(color: UIColor) -> UIImage {
     let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     v.backgroundColor = .blue
     return getImageFrom(view: v)
