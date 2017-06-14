@@ -34,10 +34,10 @@ class ViewController: UITableViewController {
     func setupMetalThemeSlider() {
         metalThemeSlider.trackBackgroundImage = #imageLiteral(resourceName: "slider-metal-trackBackground.png").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
         metalThemeSlider.trackImage = #imageLiteral(resourceName: "slider-metal-track.png").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 7, 0, 7))
-        metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "slider-metal-handle.png")
-        metalThemeSlider.highHandleImageNormal = #imageLiteral(resourceName: "slider-metal-handle.png")
-        metalThemeSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "slider-metal-handle-highlighted.png")
-        metalThemeSlider.highHandleImageHighlighted = #imageLiteral(resourceName: "slider-metal-handle-highlighted.png")
+        metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        metalThemeSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "kiss")
+        metalThemeSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
+        metalThemeSlider.highHandleImageHighlighted = #imageLiteral(resourceName: "mask")
     }
     
     @IBAction func updateValues(_ sender: Any) {
