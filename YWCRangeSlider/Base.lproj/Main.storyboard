@@ -14,7 +14,7 @@
             <objects>
                 <tableViewController id="YWQ-k2-Oig" customClass="ViewController" customModule="YWCRangeSlider" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bQA-Y4-lFy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -43,7 +43,7 @@
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GNV-vC-BmP" id="1vD-W4-7mD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgo-ec-7RU" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -58,7 +58,7 @@
                                         <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="irL-nb-WVv" id="j99-hh-w34">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-X8-j1l">
@@ -83,7 +83,7 @@
                                         <rect key="frame" x="0.0" y="299.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hza-kV-kFs" id="mea-l9-Lef">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-OE-CS6" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -102,7 +102,7 @@
                                         <rect key="frame" x="0.0" y="399.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xzx-mP-Q39" id="cga-Om-OZc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etb-Pb-vik" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -121,7 +121,7 @@
                                         <rect key="frame" x="0.0" y="499.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YmF-Cy-onE" id="bjw-ce-tVr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SdH-QX-iYX" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -140,7 +140,7 @@
                                         <rect key="frame" x="0.0" y="599.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ae3-su-Cbm" id="A8X-sG-iaN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-sg-8d4" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -162,7 +162,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYd-6M-3dL" userLabel="Metal theme slider" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYd-6M-3dL" userLabel="Custom Theme Slider" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,10 +191,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="YWCRangeSlider" id="1Yq-XS-tm3"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="2000"/>
                     <connections>
                         <outlet property="basicSlider" destination="cIg-OR-E0t" id="T8o-ja-x9b"/>
                         <outlet property="crossoverSlider" destination="SdH-QX-iYX" id="ek3-wS-byG"/>
-                        <outlet property="metalThemeSlider" destination="nYd-6M-3dL" id="kpy-Uj-Rxs"/>
+                        <outlet property="customThemeSlider" destination="nYd-6M-3dL" id="k2I-Wn-mhy"/>
                         <outlet property="programmaticSlider" destination="7gm-sg-8d4" id="3nV-7p-6Mv"/>
                         <outlet property="setValuesSlider" destination="kgo-ec-7RU" id="tlo-nj-eTf"/>
                         <outlet property="stepByStepSlider" destination="etb-Pb-vik" id="dxA-gj-QeC"/>
