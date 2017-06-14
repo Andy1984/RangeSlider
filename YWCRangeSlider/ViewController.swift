@@ -16,7 +16,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var stepByStepSlider: RangeSlider!
     @IBOutlet weak var crossoverSlider: RangeSlider!
     @IBOutlet weak var programmaticSlider: RangeSlider!
-    @IBOutlet weak var metalThemeSlider: RangeSlider!
+    @IBOutlet weak var customThemeSlider: RangeSlider!
     
     override func viewDidLoad() {
         
@@ -28,16 +28,16 @@ class ViewController: UITableViewController {
         setupStepByStepSlider()
         setupCrossoverSlider()
         setupProgrammaticSlider()
-        setupMetalThemeSlider()
+        setupCustomThemeSlider()
     }
     
-    func setupMetalThemeSlider() {
-        metalThemeSlider.trackBackgroundImage = #imageLiteral(resourceName: "slider-metal-trackBackground.png").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
-        metalThemeSlider.trackImage = #imageLiteral(resourceName: "slider-metal-track.png").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 7, 0, 7))
-        metalThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
-        metalThemeSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "kiss")
-        metalThemeSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
-        metalThemeSlider.highHandleImageHighlighted = #imageLiteral(resourceName: "mask")
+    func setupCustomThemeSlider() {
+        customThemeSlider.trackBackgroundImage = #imageLiteral(resourceName: "empty").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        customThemeSlider.trackImage = #imageLiteral(resourceName: "full").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        customThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        customThemeSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "kiss")
+        customThemeSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
+        customThemeSlider.highHandleImageHighlighted = #imageLiteral(resourceName: "mask")
     }
     
     @IBAction func updateValues(_ sender: Any) {

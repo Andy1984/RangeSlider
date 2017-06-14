@@ -153,7 +153,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Metal theme" id="bJy-u4-ZOg">
+                            <tableViewSection headerTitle="Custom theme" id="bJy-u4-ZOg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iDz-Iw-hH1">
                                         <rect key="frame" x="0.0" y="699.5" width="375" height="44"/>
