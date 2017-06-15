@@ -58,21 +58,29 @@ class ViewController: UITableViewController {
     func setupSetValuesAnimatedSlider() {
         setValuesSlider.lowValue = 0.5
         setValuesSlider.highValue = 0.8
+        setValuesSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        setValuesSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
     }
     
     func setupSteppedSlider() {
         steppedSlider.stepValue = 0.25
+        steppedSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        steppedSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
     }
     
     func setupSteppedContinuouslySlider() {
         steppedContinuouslySlider.stepValue = 0.25
         steppedContinuouslySlider.stepValueContinuously = true
+        steppedContinuouslySlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        steppedContinuouslySlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
     }
     
     func setupCrossoverSlider() {
         crossoverSlider.maximumValue = 1
         crossoverSlider.minimumValue = -1
         crossoverSlider.minimumDistance = -2
+        crossoverSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        crossoverSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
     }
     
     func setupProgrammaticSlider() {
@@ -82,12 +90,13 @@ class ViewController: UITableViewController {
     
     func setupSingleThumbSlider() {
         
-        singleThumbSlider.highValue = 0.3
+        singleThumbSlider.highValue = 0.0
         singleThumbSlider.highHandleImageNormal = #imageLiteral(resourceName: "smile")
         singleThumbSlider.trackBackgroundImage = #imageLiteral(resourceName: "hollowProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
         singleThumbSlider.trackImage = #imageLiteral(resourceName: "solidProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
         singleThumbSlider.isLowHandleHidden = true
-        
+        singleThumbSlider.stepValue = 0.25
+        singleThumbSlider.stepValueContinuously = true
     }
     
 }
