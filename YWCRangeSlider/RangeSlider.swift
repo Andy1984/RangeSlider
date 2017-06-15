@@ -24,13 +24,13 @@ class RangeSlider: UIControl {
     var stepValue = 0.0
     
     /// default false. If true, the slider ball will not move until it hit a new step.
-    var isMovingStepByStep = false
+    var stepValueContinuously = false
     
-    /// stepValueInternal = isMovingStepByStep ? stepValue : 0.0f;
+    /// stepValueInternal = stepValueContinuously ? stepValue : 0.0f;
     private var stepValueInternal = 0.0
     
     /// default true. If false, it will not trigger valueChanged until the touch ends.
-    var changeValueContinously = true
+    var changeValueContinuously = true
     
     /// default false
     var isLowHandleHidden = false {
@@ -163,7 +163,7 @@ class RangeSlider: UIControl {
     private var trackImageView: UIImageView!
     
     /// the length of default ball
-    private let systemBallLength: CGFloat = 31.0
+    private let systemBallLength: CGFloat = 28.0
     
     /// the image of value bar
     var trackImage = getImageWithColor(color: .blue)
@@ -418,7 +418,7 @@ class RangeSlider: UIControl {
             highTouchOffset = Double(touchPoint.x - highHandle.center.x)
         }
         
-        stepValueInternal = isMovingStepByStep ? stepValue : 0.0
+        stepValueInternal = stepValueContinuously ? stepValue : 0.0
         
         return true
     }
@@ -439,7 +439,7 @@ class RangeSlider: UIControl {
                 
                 let pointX = touchPoint.x.native
                 let low = lowValueForCenterX(x: pointX)
-                setValue(low: low, high: Double.nan, animated: isMovingStepByStep)
+                setValue(low: low, high: Double.nan, animated: stepValueContinuously)
             } else {
                 lowHandle.isHighlighted = false
             }
@@ -457,14 +457,14 @@ class RangeSlider: UIControl {
                 
                 let pointX = touchPoint.x.native
                 let high = highValueForCenterX(x: pointX)
-                setValue(low: Double.nan, high: high, animated: isMovingStepByStep)
+                setValue(low: Double.nan, high: high, animated: stepValueContinuously)
                 
             } else {
                 highHandle.isHighlighted = false
             }
         }
         
-        if changeValueContinously {
+        if changeValueContinuously {
             sendActions(for: .valueChanged)
         }
         return true

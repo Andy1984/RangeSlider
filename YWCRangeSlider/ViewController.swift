@@ -13,7 +13,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var basicSlider: RangeSlider!
     @IBOutlet weak var setValuesSlider: RangeSlider!
     @IBOutlet weak var steppedSlider: RangeSlider!
-    @IBOutlet weak var stepByStepSlider: RangeSlider!
+    @IBOutlet weak var steppedContinuouslySlider: RangeSlider!
     @IBOutlet weak var crossoverSlider: RangeSlider!
     @IBOutlet weak var programmaticSlider: RangeSlider!
     @IBOutlet weak var customThemeSlider: RangeSlider!
@@ -26,7 +26,7 @@ class ViewController: UITableViewController {
         setupBasicSlider()
         setupSetValuesAnimatedSlider()
         setupSteppedSlider()
-        setupStepByStepSlider()
+        setupSteppedContinuouslySlider()
         setupCrossoverSlider()
         setupProgrammaticSlider()
         setupCustomThemeSlider()
@@ -64,9 +64,9 @@ class ViewController: UITableViewController {
         steppedSlider.stepValue = 0.25
     }
     
-    func setupStepByStepSlider() {
-        stepByStepSlider.stepValue = 0.25
-        stepByStepSlider.isMovingStepByStep = true
+    func setupSteppedContinuouslySlider() {
+        steppedContinuouslySlider.stepValue = 0.25
+        steppedContinuouslySlider.stepValueContinuously = true
     }
     
     func setupCrossoverSlider() {
