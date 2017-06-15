@@ -56,16 +56,16 @@ class ViewController: UITableViewController {
     }
     
     func setupSetValuesAnimatedSlider() {
-        setValuesSlider.lowMaximumValue = 0.5
+        setValuesSlider.lowValue = 0.5
         setValuesSlider.highValue = 0.8
     }
     
     func setupSteppedSlider() {
-        steppedSlider.stepValue = 0.2
+        steppedSlider.stepValue = 0.25
     }
     
     func setupStepByStepSlider() {
-        stepByStepSlider.stepValue = 0.2
+        stepByStepSlider.stepValue = 0.25
         stepByStepSlider.isMovingStepByStep = true
     }
     
