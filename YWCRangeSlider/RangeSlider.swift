@@ -172,8 +172,27 @@ class RangeSlider: UIControl {
     var trackCrossedImage = getImageWithColor(color: .red)
     
     /// Default is nil, and use the shadow ball of system
-    var lowHandleImageNormal: UIImage?
-    var highHandleImageNormal: UIImage?
+    var lowHandleImageNormal: UIImage? {
+        didSet {
+            if lowHandleImageNormal == nil {
+                becomeSystemBall(ball: lowHandle)
+            } else {
+                backToImage(ball: lowHandle)
+            }
+        }
+    }
+    
+    /// Default is nil, and use the shadow ball of system
+    var highHandleImageNormal: UIImage? {
+        didSet {
+            if highHandleImageNormal == nil {
+                becomeSystemBall(ball: lowHandle)
+            } else {
+                backToImage(ball: lowHandle)
+            }
+        }
+    }
+    
     var lowHandleImageHighlighted: UIImage?
     var highHandleImageHighlighted: UIImage?
     
@@ -242,6 +261,8 @@ class RangeSlider: UIControl {
         highLabel = UILabel()
         addSubview(highLabel)
         
+        becomeSystemBall(ball: lowHandle)
+        becomeSystemBall(ball: highHandle)
     }
     
     func lowValueForCenterX(x: Double) -> Double {
@@ -315,7 +336,7 @@ class RangeSlider: UIControl {
         let rect = CGRect(x: x, y: y, width: w, height: h)
         return rect
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -334,10 +355,8 @@ class RangeSlider: UIControl {
         lowHandle.isHidden = isLowHandleHidden
         if lowHandle.image == nil {
             lowHandle.frame = handleRectFor(value: lowValue, size: CGSize(width: systemBallLength, height: systemBallLength))
-            becomeSystemBall(ball: lowHandle)
         } else {
             lowHandle.frame = handleRectFor(value: lowValue, size: lowHandle.image!.size)
-            backToImage(ball: lowHandle)
         }
         
         // highHandle
@@ -346,10 +365,8 @@ class RangeSlider: UIControl {
         highHandle.isHidden = isHighHandleHidden
         if highHandle.image == nil {
             highHandle.frame = handleRectFor(value: highValue, size: CGSize(width: systemBallLength, height: systemBallLength))
-            becomeSystemBall(ball: highHandle)
         } else {
             highHandle.frame = handleRectFor(value: highValue, size: highHandle.image!.size)
-            backToImage(ball: highHandle)
         }
         
         
