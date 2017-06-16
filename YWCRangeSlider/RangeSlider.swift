@@ -186,9 +186,9 @@ class RangeSlider: UIControl {
     var highHandleImageNormal: UIImage? {
         didSet {
             if highHandleImageNormal == nil {
-                becomeSystemBall(ball: lowHandle)
+                becomeSystemBall(ball: highHandle)
             } else {
-                backToImage(ball: lowHandle)
+                backToImage(ball: highHandle)
             }
         }
     }
