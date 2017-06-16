@@ -196,7 +196,7 @@ class RangeSlider: UIControl {
     var lowHandleImageHighlighted: UIImage?
     var highHandleImageHighlighted: UIImage?
     
-    var trackBackgroundImage: UIImage? {
+    var trackBackgroundImage: UIImage! {
         didSet {
             self.trackBackgroundImageView.image = trackBackgroundImage
             self.trackBackgroundImageView.frame = trackBackgroundRect()
@@ -237,11 +237,9 @@ class RangeSlider: UIControl {
         lowMaximumValue = Double.nan
         highMinimumValue = Double.nan
         
-        trackBackgroundImageView = UIImageView(frame: trackBackgroundRect())
-        let grayView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-        grayView.backgroundColor = .gray
-        let grayImage = getImageFrom(view: grayView)
-        trackBackgroundImageView.image = grayImage
+        trackBackgroundImageView = UIImageView()
+        //trackBackgroundImage didSet will set frame
+        trackBackgroundImage = getImageWithColor(color: #colorLiteral(red: 0.7333333333, green: 0.7333333333, blue: 0.7333333333, alpha: 1))
         addSubview(self.trackBackgroundImageView)
         
         trackImageView = UIImageView()
@@ -367,19 +365,11 @@ class RangeSlider: UIControl {
     }
     
     func trackBackgroundRect() -> CGRect {
-        if (self.trackBackgroundImage != nil) {
-            let x:Double = 0.0
-            let y:Double = Double(self.frame.size.height - trackBackgroundImage!.size.height) / 2
-            let width:Double = Double(self.frame.size.width)
-            let height:Double = Double(trackBackgroundImage!.size.height)
-            return CGRect(x: x, y: y, width: width, height: height)
-        } else {
-            let x = 0.0
-            let y = (Double(frame.size.height) - sliderLineHeight) / 2
-            let width = Double(self.frame.size.width)
-            let height = sliderLineHeight
-            return CGRect(x: x, y: y, width: width, height: height)
-        }
+        let x:Double = 0.0
+        let y:Double = Double(self.frame.size.height - trackBackgroundImage.size.height) / 2
+        let width:Double = Double(self.frame.size.width)
+        let height:Double = Double(trackBackgroundImage.size.height)
+        return CGRect(x: x, y: y, width: width, height: height)
     }
     
     func handleRectFor(value: Double, size: CGSize) -> CGRect {
