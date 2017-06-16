@@ -32,15 +32,15 @@ class RangeSlider: UIControl {
     /// default true. If false, it will not trigger valueChanged until the touch ends.
     var changeValueContinuously = true
     
-    /// default false
-    var isLowHandleHidden = false {
+    /// default false, if true, it become a single thumb slider
+    var isHighHandleHidden = false {
         didSet {
             setNeedsLayout()
         }
     }
     
-    /// default false
-    var isHighHandleHidden = false {
+    /// default false, isHighHandleHidden counterpart, should be useless
+    var isLowHandleHidden = false {
         didSet {
             setNeedsLayout()
         }
@@ -151,8 +151,8 @@ class RangeSlider: UIControl {
     /// minimum value for right thumb, default nan
     var highMinimumValue = Double.nan
     
-    /// default is 2.0
-    private var sliderLineHeight = 2.0
+    /// default is 2.0, it works if trackBackgroundImage is nil
+    var sliderLineHeight = 2.0
     
     /// make left thumb easy to touch. Default UIEdgeInsetsMake(-5, -5, -5, -5)
     var lowTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5)
@@ -166,10 +166,10 @@ class RangeSlider: UIControl {
     private let systemBallLength: CGFloat = 28.0
     
     /// the image of value bar
-    var trackImage = getImageWithColor(color: .blue)
+    var trackImage = getImageWithColor(color: #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1))
     
     /// the image of value bar when crossed
-    var trackCrossedImage = getImageWithColor(color: .red)
+    var trackCrossedImage = getImageWithColor(color: #colorLiteral(red: 0.9176470588, green: 0.5058823529, blue: 0.01568627451, alpha: 1))
     
     /// Default is nil, and use the shadow ball of system
     var lowHandleImageNormal: UIImage? {
@@ -178,6 +178,7 @@ class RangeSlider: UIControl {
                 becomeSystemBall(ball: lowHandle)
             } else {
                 backToImage(ball: lowHandle)
+                
             }
         }
     }
@@ -308,18 +309,9 @@ class RangeSlider: UIControl {
         }
     }
     
-    
-    /// Maybe not necessary
-    private var lowHandleWidth: CGFloat {
-        return lowHandle.image?.size.width ?? systemBallLength
-    }
-    
-    /// Maybe not necessary
-    private var highHandleWidth: CGFloat {
-        return highHandle.image?.size.width ?? systemBallLength
-    }
-    
     func trackRect() -> CGRect {
+        let lowHandleWidth = lowHandle.image?.size.width ?? systemBallLength
+        let highHandleWidth = highHandle.image?.size.width ?? systemBallLength
         let y = trackBackgroundRect().minY
         var x = min(lowHandle.frame.minX, highHandle.frame.minX) + lowHandleWidth / 2
         let h = trackBackgroundRect().height
@@ -511,6 +503,6 @@ private func getImageFrom(view: UIView) -> UIImage {
 /// create a 1 x 1 image with color
 private func getImageWithColor(color: UIColor) -> UIImage {
     let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-    v.backgroundColor = .blue
+    v.backgroundColor = color
     return getImageFrom(view: v)
 }
