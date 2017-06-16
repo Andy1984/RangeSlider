@@ -178,7 +178,6 @@ class RangeSlider: UIControl {
                 becomeSystemBall(ball: lowHandle)
             } else {
                 backToImage(ball: lowHandle)
-                
             }
         }
     }
