@@ -166,10 +166,10 @@ class RangeSlider: UIControl {
     private let systemBallLength: CGFloat = 28.0
     
     /// the image of value bar
-    var trackImage = getImageWithColor(color: #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1))
+    var trackImage = RangeSlider.getImage1x2(color: #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1))
     
     /// the image of value bar when crossed
-    var trackCrossedImage = getImageWithColor(color: #colorLiteral(red: 0.9176470588, green: 0.5058823529, blue: 0.01568627451, alpha: 1))
+    var trackCrossedImage = RangeSlider.getImage1x2(color: .red)
     
     /// Default is nil, and use the shadow ball of system
     var lowHandleImageNormal: UIImage? {
@@ -239,7 +239,7 @@ class RangeSlider: UIControl {
         
         trackBackgroundImageView = UIImageView()
         //trackBackgroundImage didSet will set frame
-        trackBackgroundImage = getImageWithColor(color: #colorLiteral(red: 0.7333333333, green: 0.7333333333, blue: 0.7333333333, alpha: 1))
+        trackBackgroundImage = RangeSlider.getImage1x2(color: #colorLiteral(red: 0.7333333333, green: 0.7333333333, blue: 0.7333333333, alpha: 1))
         addSubview(self.trackBackgroundImageView)
         
         trackImageView = UIImageView()
@@ -478,20 +478,25 @@ class RangeSlider: UIControl {
         sendActions(for: .valueChanged)
     }
     
+    /// convert view to image
+    class func getImage(view: UIView) -> UIImage {
+        UIGraphicsBeginImageContext(view.bounds.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenShot!
+    }
+    
+    /// create a image with color
+    class func getImage(color: UIColor, rect: CGRect) -> UIImage {
+        let v = UIView(frame: rect)
+        v.backgroundColor = color
+        return getImage(view: v)
+    }
+    
+    class func getImage1x2(color:UIColor) -> UIImage {
+        return getImage(color: color, rect: CGRect(x: 0, y: 0, width: 1, height: 2))
+    }
 }
 
-/// convert view to image
-private func getImageFrom(view: UIView) -> UIImage {
-    UIGraphicsBeginImageContext(view.bounds.size)
-    view.layer.render(in: UIGraphicsGetCurrentContext()!)
-    let screenShot = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return screenShot!
-}
 
-/// create a 1 x 1 image with color
-private func getImageWithColor(color: UIColor) -> UIImage {
-    let v = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-    v.backgroundColor = color
-    return getImageFrom(view: v)
-}
