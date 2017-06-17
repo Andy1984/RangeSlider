@@ -16,7 +16,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var steppedContinuouslySlider: RangeSlider!
     @IBOutlet weak var crossoverSlider: RangeSlider!
     @IBOutlet weak var customHeightSlider: RangeSlider!
-    @IBOutlet weak var customThemeSlider: RangeSlider!
+    @IBOutlet weak var highlightedSlider: RangeSlider!
     @IBOutlet weak var singleThumbSlider: RangeSlider!
     
     override func viewDidLoad() {
@@ -29,17 +29,17 @@ class ViewController: UITableViewController {
         setupSteppedContinuouslySlider()
         setupCrossoverSlider()
         setupCustomHeightSlider()
-        setupCustomThemeSlider()
+        setupHighlightedSlider()
         setupSingleThumbSlider()
     }
     
-    func setupCustomThemeSlider() {
-        customThemeSlider.trackBackgroundImage = #imageLiteral(resourceName: "hollowProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
-        customThemeSlider.trackImage = #imageLiteral(resourceName: "solidProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
-        customThemeSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
-        customThemeSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "kiss")
-        customThemeSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
-        customThemeSlider.highHandleImageHighlighted = #imageLiteral(resourceName: "mask")
+    func setupHighlightedSlider() {
+        highlightedSlider.trackBackgroundImage = #imageLiteral(resourceName: "hollowProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        highlightedSlider.trackImage = #imageLiteral(resourceName: "solidProgress").resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 5))
+        highlightedSlider.lowHandleImageNormal = #imageLiteral(resourceName: "smile")
+        highlightedSlider.lowHandleImageHighlighted = #imageLiteral(resourceName: "kiss")
+        highlightedSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
+        highlightedSlider.highHandleImageHighlighted = #imageLiteral(resourceName: "mask")
     }
     
     @IBAction func updateValues(_ sender: Any) {
