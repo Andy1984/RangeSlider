@@ -48,6 +48,8 @@ class RangeSlider: UIControl {
     
     private var _lowCenter: CGPoint = .zero
     private var _highCenter: CGPoint = .zero
+    
+    /// center point 
     var lowCenter: CGPoint {
         return _lowCenter
     }
@@ -196,10 +198,12 @@ class RangeSlider: UIControl {
     var lowHandleImageHighlighted: UIImage?
     var highHandleImageHighlighted: UIImage?
     
+    /// backgroundImage of the bar, default is a gray 1x2 image
     var trackBackgroundImage: UIImage! {
         didSet {
             self.trackBackgroundImageView.image = trackBackgroundImage
             self.trackBackgroundImageView.frame = trackBackgroundRect()
+            setNeedsLayout()
         }
     }
     private var trackBackgroundImageView: UIImageView!
@@ -399,8 +403,6 @@ class RangeSlider: UIControl {
         ball.layer.shadowColor = UIColor.clear.cgColor
     }
     
-    
-    
     // MARK: - override UIControl method
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
@@ -477,6 +479,8 @@ class RangeSlider: UIControl {
         }
         sendActions(for: .valueChanged)
     }
+    
+    // MARK: - class method to create image fast
     
     /// convert view to image
     class func getImage(view: UIView) -> UIImage {

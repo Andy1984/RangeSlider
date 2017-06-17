@@ -84,8 +84,15 @@ class ViewController: UITableViewController {
     }
     
     func setupProgrammaticSlider() {
-        programmaticSlider.lowValue = 0.3
-        programmaticSlider.highValue = 0.9
+        // magenta value bar and height is 5.0
+        let trackImage = RangeSlider.getImage(color: .magenta, rect: CGRect(x: 0, y: 0, width: 1, height: 5))
+        programmaticSlider.trackImage = trackImage
+        
+        // brown background bar and height is 5.0
+        let trackBackgroundImage = RangeSlider.getImage(color: .brown, rect: CGRect(x: 0, y: 0, width: 1, height: 5))
+        programmaticSlider.trackBackgroundImage = trackBackgroundImage
+        
+        programmaticSlider.lowValue = 0.25
     }
     
     func setupSingleThumbSlider() {
