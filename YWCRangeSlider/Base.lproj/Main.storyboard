@@ -24,7 +24,7 @@
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hxq-0H-fj5" id="Jit-br-kdb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-OR-E0t" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -43,7 +43,7 @@
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GNV-vC-BmP" id="1vD-W4-7mD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgo-ec-7RU" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -58,7 +58,7 @@
                                         <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="irL-nb-WVv" id="j99-hh-w34">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-X8-j1l">
@@ -134,13 +134,13 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Change slider height and color" id="t3K-kr-wZd">
+                            <tableViewSection headerTitle="Custom height" id="t3K-kr-wZd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ae3-su-Cbm">
                                         <rect key="frame" x="0.0" y="599.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ae3-su-Cbm" id="A8X-sG-iaN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-sg-8d4" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
@@ -203,8 +203,8 @@
                     <connections>
                         <outlet property="basicSlider" destination="cIg-OR-E0t" id="T8o-ja-x9b"/>
                         <outlet property="crossoverSlider" destination="SdH-QX-iYX" id="ek3-wS-byG"/>
+                        <outlet property="customHeightSlider" destination="7gm-sg-8d4" id="yRZ-KP-m0h"/>
                         <outlet property="customThemeSlider" destination="nYd-6M-3dL" id="k2I-Wn-mhy"/>
-                        <outlet property="programmaticSlider" destination="7gm-sg-8d4" id="3nV-7p-6Mv"/>
                         <outlet property="setValuesSlider" destination="kgo-ec-7RU" id="tlo-nj-eTf"/>
                         <outlet property="singleThumbSlider" destination="XWy-ww-hkU" id="VvA-Z2-bYZ"/>
                         <outlet property="steppedContinuouslySlider" destination="etb-Pb-vik" id="LVl-xV-4YT"/>

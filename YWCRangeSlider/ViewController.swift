@@ -15,7 +15,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var steppedSlider: RangeSlider!
     @IBOutlet weak var steppedContinuouslySlider: RangeSlider!
     @IBOutlet weak var crossoverSlider: RangeSlider!
-    @IBOutlet weak var programmaticSlider: RangeSlider!
+    @IBOutlet weak var customHeightSlider: RangeSlider!
     @IBOutlet weak var customThemeSlider: RangeSlider!
     @IBOutlet weak var singleThumbSlider: RangeSlider!
     
@@ -28,7 +28,7 @@ class ViewController: UITableViewController {
         setupSteppedSlider()
         setupSteppedContinuouslySlider()
         setupCrossoverSlider()
-        setupProgrammaticSlider()
+        setupCustomHeightSlider()
         setupCustomThemeSlider()
         setupSingleThumbSlider()
     }
@@ -83,16 +83,16 @@ class ViewController: UITableViewController {
         crossoverSlider.highHandleImageNormal = #imageLiteral(resourceName: "love")
     }
     
-    func setupProgrammaticSlider() {
+    func setupCustomHeightSlider() {
         // magenta value bar and height is 5.0
         let trackImage = RangeSlider.getImage(color: .magenta, rect: CGRect(x: 0, y: 0, width: 1, height: 5))
-        programmaticSlider.trackImage = trackImage
+        customHeightSlider.trackImage = trackImage
         
         // brown background bar and height is 5.0
         let trackBackgroundImage = RangeSlider.getImage(color: .brown, rect: CGRect(x: 0, y: 0, width: 1, height: 5))
-        programmaticSlider.trackBackgroundImage = trackBackgroundImage
+        customHeightSlider.trackBackgroundImage = trackBackgroundImage
         
-        programmaticSlider.lowValue = 0.25
+        customHeightSlider.lowValue = 0.25
     }
     
     func setupSingleThumbSlider() {
