@@ -18,6 +18,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var customHeightSlider: RangeSlider!
     @IBOutlet weak var customThemeSlider: RangeSlider!
     @IBOutlet weak var singleThumbSlider: RangeSlider!
+    @IBOutlet weak var indicatorSlider: RangeSlider!
     
     override func viewDidLoad() {
         
@@ -105,5 +106,37 @@ class ViewController: UITableViewController {
         singleThumbSlider.stepValue = 0.25
         singleThumbSlider.stepValueContinuously = true
     }
+    
+    var lowLabel:UILabel!
+    var highLabel:UILabel!
+    
+    func setupIndicatorSlider() {
+        indicatorSlider.addTarget(self, action: #selector(indicatorSliderValueChanged(sender:)), for: .valueChanged)
+        indicatorSlider.minimumValue = 0
+        indicatorSlider.maximumValue = 100
+        lowLabel = UILabel()
+        view.addSubview(lowLabel)
+        lowLabel.frame = CGRect(x:0, y:0, width: 30, height: 20)
+        lowLabel.backgroundColor = .blue
+        
+        highLabel = UILabel()
+        view.addSubview(highLabel)
+    }
+    
+    func indicatorSliderValueChanged(sender: RangeSlider) {
+//        lowLabel.center = sender.lowCenter
+//        highLabel.center = sender.highCenter
+        
+        let lowCenter = CGPoint(x:sender.lowCenter.x, y: sender.lowCenter.y - 20)
+        let highCenter = CGPoint(x:sender.highCenter.x, y: sender.highCenter.y - 20)
+        lowLabel.center = lowCenter
+        highLabel.center = highCenter
+//        lowLabel.text = Strin
+//        highLabel.text = sender.highValue
+        lowLabel.text = String(format: "%.2f", sender.lowValue)
+        
+    }
+    
+    
     
 }

@@ -49,10 +49,12 @@ class RangeSlider: UIControl {
     private var _lowCenter: CGPoint = .zero
     private var _highCenter: CGPoint = .zero
     
-    /// center point 
+    /// low center point
     var lowCenter: CGPoint {
         return _lowCenter
     }
+    
+    /// high center point
     var highCenter: CGPoint {
         return _highCenter
     }
