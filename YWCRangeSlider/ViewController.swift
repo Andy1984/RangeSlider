@@ -108,6 +108,8 @@ class ViewController: UITableViewController {
         singleThumbSlider.stepValueContinuously = true
     }
     
+    // MARK: - indicator slider
+    
     var lowLabel:UILabel!
     var highLabel:UILabel!
     
@@ -116,6 +118,7 @@ class ViewController: UITableViewController {
         indicatorSlider.maximumValue = 100
         indicatorSlider.lowValue = 0
         indicatorSlider.highValue = 100
+        indicatorSlider.minimumDistance = 20
         
         lowLabel = UILabel()
         indicatorSlider.superview!.addSubview(lowLabel)
@@ -128,6 +131,10 @@ class ViewController: UITableViewController {
         highLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
         
         indicatorSlider.addTarget(self, action: #selector(indicatorSliderValueChanged(sender:)), for: .valueChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         indicatorSliderValueChanged(sender: indicatorSlider)
     }
     
