@@ -51,7 +51,7 @@ class ViewController: UITableViewController {
         setValuesSlider.maximumValue = 1
         setValuesSlider.setValue(low: min(value1, value2), high: max(value1, value2), animated: true)
     }
-    
+
     func setupBasicSlider() {
         basicSlider.minimumValue = 0
         basicSlider.maximumValue = 1
@@ -109,44 +109,40 @@ class ViewController: UITableViewController {
     }
     
     // MARK: - indicator slider
-    
-    var lowLabel:UILabel!
-    var highLabel:UILabel!
-    
     func setupIndicatorSlider() {
+        
+        let contentView = indicatorSlider.superview!
+        
         indicatorSlider.minimumValue = 0
         indicatorSlider.maximumValue = 100
         indicatorSlider.lowValue = 0
         indicatorSlider.highValue = 100
         indicatorSlider.minimumDistance = 20
         
-        lowLabel = UILabel()
-        indicatorSlider.superview!.addSubview(lowLabel)
+        let lowLabel = UILabel()
+        contentView.addSubview(lowLabel)
         lowLabel.textAlignment = .center
         lowLabel.frame = CGRect(x:0, y:0, width: 60, height: 20)
         
-        highLabel = UILabel()
-        indicatorSlider.superview!.addSubview(highLabel)
+        let highLabel = UILabel()
+        contentView.addSubview(highLabel)
         highLabel.textAlignment = .center
         highLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
         
-        indicatorSlider.addTarget(self, action: #selector(indicatorSliderValueChanged(sender:)), for: .valueChanged)
+        indicatorSlider.centersChangedHandler = { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            let lowCenterInSlider = CGPoint(x:self.indicatorSlider.lowCenter.x, y: self.indicatorSlider.lowCenter.y - 30)
+            let highCenterInSlider = CGPoint(x:self.indicatorSlider.highCenter.x, y: self.indicatorSlider.highCenter.y - 30)
+            let lowCenterInView = self.indicatorSlider.convert(lowCenterInSlider, to: contentView)
+            let highCenterInView = self.indicatorSlider.convert(highCenterInSlider, to: contentView)
+            
+            lowLabel.center = lowCenterInView
+            highLabel.center = highCenterInView
+            lowLabel.text = String(format: "%.1f", self.indicatorSlider.lowValue)
+            highLabel.text = String(format: "%.1f", self.indicatorSlider.highValue)
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        indicatorSliderValueChanged(sender: indicatorSlider)
-    }
-    
-    func indicatorSliderValueChanged(sender: RangeSlider) {
-        let lowCenterInSlider = CGPoint(x:sender.lowCenter.x, y: sender.lowCenter.y - 30)
-        let highCenterInSlider = CGPoint(x:sender.highCenter.x, y: sender.highCenter.y - 30)
-        let lowCenterInView = sender.convert(lowCenterInSlider, to: indicatorSlider.superview!)
-        let highCenterInView = sender.convert(highCenterInSlider, to: indicatorSlider.superview!)
-        
-        lowLabel.center = lowCenterInView
-        highLabel.center = highCenterInView
-        lowLabel.text = String(format: "%.1f", sender.lowValue)
-        highLabel.text = String(format: "%.1f", sender.highValue)
-    }
 }

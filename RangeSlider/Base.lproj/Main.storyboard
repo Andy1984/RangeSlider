@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CVN-qz-HB9">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,7 +12,7 @@
         <!--RangeSlider-->
         <scene sceneID="gtV-Ez-1LI">
             <objects>
-                <tableViewController id="YWQ-k2-Oig" customClass="ViewController" customModule="YWCRangeSlider" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YWQ-k2-Oig" customClass="ViewController" customModule="RangeSlider" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bQA-Y4-lFy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,10 +24,10 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hxq-0H-fj5" id="Jit-br-kdb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-OR-E0t" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-OR-E0t" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,10 +43,10 @@
                                         <rect key="frame" x="0.0" y="155" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GNV-vC-BmP" id="1vD-W4-7mD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgo-ec-7RU" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgo-ec-7RU" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,7 +58,7 @@
                                         <rect key="frame" x="0.0" y="199" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="irL-nb-WVv" id="j99-hh-w34">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTe-X8-j1l">
@@ -79,10 +83,10 @@
                                         <rect key="frame" x="0.0" y="299" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hza-kV-kFs" id="mea-l9-Lef">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-OE-CS6" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-OE-CS6" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,13 +99,13 @@
                             <tableViewSection headerTitle="Stepped continuously" id="iei-Od-YHE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xzx-mP-Q39">
-                                        <rect key="frame" x="0.0" y="399" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="400" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xzx-mP-Q39" id="cga-Om-OZc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etb-Pb-vik" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etb-Pb-vik" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,13 +118,13 @@
                             <tableViewSection headerTitle="cross over" id="Sm6-1H-LWL">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YmF-Cy-onE">
-                                        <rect key="frame" x="0.0" y="499" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="500" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YmF-Cy-onE" id="bjw-ce-tVr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SdH-QX-iYX" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SdH-QX-iYX" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,13 +137,13 @@
                             <tableViewSection headerTitle="Custom height" id="t3K-kr-wZd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ae3-su-Cbm">
-                                        <rect key="frame" x="0.0" y="599" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="600" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ae3-su-Cbm" id="A8X-sG-iaN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-sg-8d4" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-sg-8d4" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -155,10 +159,10 @@
                                         <rect key="frame" x="0.0" y="700" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iDz-Iw-hH1" id="heC-VV-buI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYd-6M-3dL" userLabel="Custom Theme Slider" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYd-6M-3dL" userLabel="Custom Theme Slider" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,10 +178,10 @@
                                         <rect key="frame" x="0.0" y="800" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="90G-N9-ZaF" id="tAL-1O-Y8O">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-ww-hkU" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-ww-hkU" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="0.0" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,10 +197,10 @@
                                         <rect key="frame" x="0.0" y="900" width="375" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUS-Dh-P0v" id="YNC-KC-w1m">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-nE-Sjy" customClass="RangeSlider" customModule="YWCRangeSlider" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-nE-Sjy" customClass="RangeSlider" customModule="RangeSlider" customModuleProvider="target">
                                                     <rect key="frame" x="37" y="35" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
