@@ -32,6 +32,7 @@ class ViewController: UITableViewController {
         setupCustomHeightSlider()
         setupCustomThemeSlider()
         setupSingleThumbSlider()
+        setupIndicatorSlider()
     }
     
     func setupCustomThemeSlider() {
@@ -111,32 +112,35 @@ class ViewController: UITableViewController {
     var highLabel:UILabel!
     
     func setupIndicatorSlider() {
-        indicatorSlider.addTarget(self, action: #selector(indicatorSliderValueChanged(sender:)), for: .valueChanged)
+        
         indicatorSlider.minimumValue = 0
         indicatorSlider.maximumValue = 100
+        indicatorSlider.lowValue = 0
+        indicatorSlider.highValue = 100
+        
         lowLabel = UILabel()
         view.addSubview(lowLabel)
-        lowLabel.frame = CGRect(x:0, y:0, width: 30, height: 20)
-        lowLabel.backgroundColor = .blue
+        lowLabel.textAlignment = .center
+        lowLabel.frame = CGRect(x:0, y:0, width: 60, height: 20)
         
         highLabel = UILabel()
         view.addSubview(highLabel)
+        highLabel.textAlignment = .center
+        highLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
+        
+        indicatorSlider.addTarget(self, action: #selector(indicatorSliderValueChanged(sender:)), for: .valueChanged)
+        indicatorSliderValueChanged(sender: indicatorSlider)
     }
     
     func indicatorSliderValueChanged(sender: RangeSlider) {
-//        lowLabel.center = sender.lowCenter
-//        highLabel.center = sender.highCenter
+        let lowCenterInSlider = CGPoint(x:sender.lowCenter.x, y: sender.lowCenter.y - 30)
+        let highCenterInSlider = CGPoint(x:sender.highCenter.x, y: sender.highCenter.y - 30)
+        let lowCenterInView = sender.convert(lowCenterInSlider, to: view)
+        let highCenterInView = sender.convert(highCenterInSlider, to: view)
         
-        let lowCenter = CGPoint(x:sender.lowCenter.x, y: sender.lowCenter.y - 20)
-        let highCenter = CGPoint(x:sender.highCenter.x, y: sender.highCenter.y - 20)
-        lowLabel.center = lowCenter
-        highLabel.center = highCenter
-//        lowLabel.text = Strin
-//        highLabel.text = sender.highValue
-        lowLabel.text = String(format: "%.2f", sender.lowValue)
-        
+        lowLabel.center = lowCenterInView
+        highLabel.center = highCenterInView
+        lowLabel.text = String(format: "%.1f", sender.lowValue)
+        highLabel.text = String(format: "%.1f", sender.highValue)
     }
-    
-    
-    
 }
