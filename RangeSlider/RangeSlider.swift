@@ -46,16 +46,37 @@ class RangeSlider: UIControl {
         }
     }
     
+    private var _lowCenter: CGPoint = .zero
+    private var _highCenter: CGPoint = .zero
+    
     /// low center point
     var lowCenter: CGPoint {
-        return lowHandle.center
+        return _lowCenter
     }
     
     /// high center point
     var highCenter: CGPoint {
-        return highHandle.center
+        return _highCenter
     }
-
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "frame" {
+            guard let handle = object as? UIImageView else {
+                return
+            }
+            if handle == lowHandle {
+                _lowCenter = lowHandle.center
+            } else if handle == highHandle {
+                _highCenter = highHandle.center
+            }
+        }
+    }
+    
+    deinit {
+        lowHandle.removeObserver(self, forKeyPath: "frame")
+        highHandle.removeObserver(self, forKeyPath: "frame")
+    }
+    
     /// setLowValue would call layoutSubviews, must not call setLowValue in the layoutSubviews
     private var _lowValue = 0.0
     /// default 0.0, set method does not send action
@@ -232,6 +253,8 @@ class RangeSlider: UIControl {
         addSubview(lowHandle)
         highHandle = UIImageView()
         addSubview(highHandle)
+        lowHandle.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
+        highHandle.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
         
         becomeSystemBall(ball: lowHandle)
         becomeSystemBall(ball: highHandle)
