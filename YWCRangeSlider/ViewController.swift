@@ -112,19 +112,18 @@ class ViewController: UITableViewController {
     var highLabel:UILabel!
     
     func setupIndicatorSlider() {
-        
         indicatorSlider.minimumValue = 0
         indicatorSlider.maximumValue = 100
         indicatorSlider.lowValue = 0
         indicatorSlider.highValue = 100
         
         lowLabel = UILabel()
-        view.addSubview(lowLabel)
+        indicatorSlider.superview!.addSubview(lowLabel)
         lowLabel.textAlignment = .center
         lowLabel.frame = CGRect(x:0, y:0, width: 60, height: 20)
         
         highLabel = UILabel()
-        view.addSubview(highLabel)
+        indicatorSlider.superview!.addSubview(highLabel)
         highLabel.textAlignment = .center
         highLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
         
@@ -135,8 +134,8 @@ class ViewController: UITableViewController {
     func indicatorSliderValueChanged(sender: RangeSlider) {
         let lowCenterInSlider = CGPoint(x:sender.lowCenter.x, y: sender.lowCenter.y - 30)
         let highCenterInSlider = CGPoint(x:sender.highCenter.x, y: sender.highCenter.y - 30)
-        let lowCenterInView = sender.convert(lowCenterInSlider, to: view)
-        let highCenterInView = sender.convert(highCenterInSlider, to: view)
+        let lowCenterInView = sender.convert(lowCenterInSlider, to: indicatorSlider.superview!)
+        let highCenterInView = sender.convert(highCenterInSlider, to: indicatorSlider.superview!)
         
         lowLabel.center = lowCenterInView
         highLabel.center = highCenterInView
