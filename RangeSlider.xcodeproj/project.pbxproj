@@ -65,7 +65,7 @@
 				E48A6A4B1EC9A09300F17FCC /* Info.plist */,
 			);
 			name = RangeSlider;
-			path = YWCRangeSlider;
+			path = RangeSlider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,7 +84,7 @@
 			dependencies = (
 			);
 			name = RangeSlider;
-			productName = YWCRangeSlider;
+			productName = RangeSlider;
 			productReference = E48A6A3C1EC9A09300F17FCC /* RangeSlider.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -269,7 +269,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48ACASQH47;
-				INFOPLIST_FILE = YWCRangeSlider/Info.plist;
+				INFOPLIST_FILE = RangeSlider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YWC.RangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,7 +282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48ACASQH47;
-				INFOPLIST_FILE = YWCRangeSlider/Info.plist;
+				INFOPLIST_FILE = RangeSlider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YWC.RangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
