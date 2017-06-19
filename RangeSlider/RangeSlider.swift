@@ -58,7 +58,7 @@ class RangeSlider: UIControl {
 
     /// setLowValue would call layoutSubviews, must not call setLowValue in the layoutSubviews
     private var _lowValue = 0.0
-    /// default 0.0
+    /// default 0.0, set method does not send action
     var lowValue: Double {
         set {
             var value = newValue
@@ -82,7 +82,7 @@ class RangeSlider: UIControl {
     
     /// setHighValue would call layoutSubviews, must not call setHighValue in the layoutSubviews
     private var _highValue = 0.0
-    /// default = maximumValue
+    /// default = maximumValue, does not send action
     var highValue: Double {
         set {
             var value = newValue
@@ -100,6 +100,29 @@ class RangeSlider: UIControl {
         }
         get {
             return _highValue
+        }
+    }
+    
+    /// move slider animatedly. does not send action
+    ///
+    /// - Parameters:
+    ///   - low:
+    ///   - high:
+    ///   - animated:
+    func setValue(low: Double, high: Double, animated: Bool) {
+        var duration = 0.0
+        if animated {
+            duration = 0.25
+        }
+        UIView.animate(withDuration: duration, delay: 0, options: .beginFromCurrentState, animations: {
+            if !low.isNaN {
+                self.lowValue = low
+            }
+            if !high.isNaN {
+                self.highValue = high
+            }
+            self.layoutIfNeeded() // must include this line in the animation block
+        }) { _ in
         }
     }
     
@@ -238,23 +261,6 @@ class RangeSlider: UIControl {
         value = max(value, lowValue + minimumDistance)
         
         return value
-    }
-    
-    func setValue(low: Double, high: Double, animated: Bool) {
-        var duration = 0.0
-        if animated {
-            duration = 0.25
-        }
-        UIView.animate(withDuration: duration, delay: 0, options: .beginFromCurrentState, animations: {
-            if !low.isNaN {
-                self.lowValue = low
-            }
-            if !high.isNaN {
-                self.highValue = high
-            }
-            self.layoutIfNeeded() // must include this line in the animation block
-        }) { _ in
-        }
     }
     
     func trackRect() -> CGRect {
