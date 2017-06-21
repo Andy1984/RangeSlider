@@ -401,13 +401,13 @@ class RangeSlider: UIControl {
 
         if lowHandle.isHighlighted {
 
-            let newValue = lowValueForCenterX(x: touchPoint.x.native - lowTouchOffset)
+            let newValue = lowValueForCenterX(x: Double(touchPoint.x) - lowTouchOffset)
 
             if newValue < lowValue || !highHandle.isHighlighted {
                 highHandle.isHighlighted = false
                 bringSubview(toFront: lowHandle)
 
-                let pointX = touchPoint.x.native
+                let pointX = Double(touchPoint.x)
                 let low = lowValueForCenterX(x: pointX)
                 setValue(low: low, high: Double.nan, animated: stepValueContinuously)
             } else {
@@ -425,9 +425,9 @@ class RangeSlider: UIControl {
                 lowHandle.isHighlighted = false
                 bringSubview(toFront: highHandle)
 
-                let pointX = touchPoint.x.native
+                let pointX = Double(touchPoint.x.native)
                 let high = highValueForCenterX(x: pointX)
-                setValue(low: Double.nan, high: high, animated: stepValueContinuously)
+                setValue(lgit ow: Double.nan, high: high, animated: stepValueContinuously)
 
             } else {
                 highHandle.isHighlighted = false
