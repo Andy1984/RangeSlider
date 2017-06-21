@@ -1,1 +1,2 @@
-# YWCRangeSlider
+# RangeSlider
+
