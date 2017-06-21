@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "RangeSlider"
+  s.name         = "YWCRangeSlider"
   s.version      = "1.0.0"
   s.summary      = "Custom UISlider with two handler to pick a minimum and maximum range."
 
@@ -29,8 +29,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/Andy1984/RangeSlider"
-  s.screenshots  = "https://github.com/Andy1984/RangeSlider/blob/master/showcase.gif"
-# https://raw.githubusercontent.com/Andy1984/RangeSlider/master/showcase.gif
+  s.screenshots  = "https://raw.githubusercontent.com/Andy1984/RangeSlider/master/showcase.gif"
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Licensing your code is important. See http://choosealicense.com for more info.
@@ -38,7 +37,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
+  s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -79,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Andy1984/RangeSlider.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Andy1984/RangeSlider.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
