@@ -64,7 +64,6 @@
 				E48A6A481EC9A09300F17FCC /* LaunchScreen.storyboard */,
 				E48A6A4B1EC9A09300F17FCC /* Info.plist */,
 			);
-			name = RangeSlider;
 			path = RangeSlider;
 			sourceTree = "<group>";
 		};
@@ -270,6 +269,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48ACASQH47;
 				INFOPLIST_FILE = RangeSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YWC.RangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -283,6 +283,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48ACASQH47;
 				INFOPLIST_FILE = RangeSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YWC.RangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
