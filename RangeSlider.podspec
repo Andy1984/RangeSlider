@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "RangeSlider"
   s.version      = "1.0.0"
-  s.summary      = "Custom UISlider with two handler to pick a minimum and maximum rage."
+  s.summary      = "Custom UISlider with two handler to pick a minimum and maximum range."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,12 +25,12 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
+  Custom UISlider with two handler to pick a minimum and maximum range. You can custom your thumb image, background bar height, color, image. You can also set the minimum stepValue of each movement, minimumDistance.
                    DESC
 
   s.homepage     = "https://github.com/Andy1984/RangeSlider"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
-
-
+  s.screenshots  = "https://github.com/Andy1984/RangeSlider/blob/master/showcase.gif"
+# https://raw.githubusercontent.com/Andy1984/RangeSlider/master/showcase.gif
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Licensing your code is important. See http://choosealicense.com for more info.
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "yang.weicheng" => "445919439@qq.com" }
+  s.author             = { "Andy1984" => "445919439@qq.com" }
   # Or just: s.author    = "yang.weicheng"
   # s.authors            = { "yang.weicheng" => "445919439@qq.com" }
   # s.social_media_url   = "http://twitter.com/yang.weicheng"
@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -90,8 +90,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "RangeSlider/RangeSlider.swift"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
