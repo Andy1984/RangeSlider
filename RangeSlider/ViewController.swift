@@ -129,7 +129,7 @@ class ViewController: UITableViewController {
         highLabel.textAlignment = .center
         highLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 20)
 
-        indicatorSlider.centersChangedHandler = { [weak self] in
+        indicatorSlider.valuesChangedHandler = { [weak self] in
             guard let `self` = self else {
                 return
             }

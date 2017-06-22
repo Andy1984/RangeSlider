@@ -52,7 +52,7 @@ class RangeSlider: UIControl {
     open private(set) var highCenter: CGPoint = .zero
 
     /// default doing nothing, will call this block when lowCenter and highCenter changed
-    open var centersChangedHandler:() -> Void = {}
+    open var valuesChangedHandler:() -> Void = {}
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "frame" {
@@ -61,10 +61,10 @@ class RangeSlider: UIControl {
             }
             if handle == lowHandle {
                 lowCenter = lowHandle.center
-                centersChangedHandler()
+                valuesChangedHandler()
             } else if handle == highHandle {
                 highCenter = highHandle.center
-                centersChangedHandler()
+                valuesChangedHandler()
             }
         }
     }
