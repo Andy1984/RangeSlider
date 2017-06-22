@@ -1,2 +1,32 @@
 # RangeSlider
 ![showcase gif](https://raw.githubusercontent.com/Andy1984/RangeSlider/master/showcase.gif)
+
+`RangeSlider` is a custom UISlider with two handler to pick a minimum and maximum range.
+
+#Adding `RangeSlider` to your project
+CocoaPods
+[CocoaPods](http://cocoapods.org) is the recommended way to add `RangeSlider` to your project.
+Add the following line to your Podfile:
+
+```ruby
+pod "YWCRangeSlider" `~> 1.0`
+```
+## Usage
+```swift
+let rangeSlider = RangeSlider(frame: frame)
+view.addSubView(rangeSlider)
+```
+To observe value changes when using gesture
+`rangeSlider.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: .valueChanged)`
+is enough, but it cannot observe changes when value being changed programmatically. Thus, `valuesChangedHandler` is a better way.
+
+## Configuration
+* `minimumValue` : The minimum possible value of the range
+* `maximumValue` : The maximum possible value of the range
+* `lowHandleImageNormal`: The image of low thumb
+* `highHandleImageNormal`: The image of high thumb
+* `lowValue`: set low value programmatically
+* `highValue`: set high value programmatically
+* `func setValue(low: Double, high: Double, animated: Bool)` set values animated
+* `stepValue`: move animatedly to a stepValue when touch ends
+* `stepValueContinuously`: If true, the thumb will not move until it hit a new step
