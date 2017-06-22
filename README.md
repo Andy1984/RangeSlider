@@ -9,7 +9,7 @@ CocoaPods
 Add the following line to your Podfile:
 
 ```ruby
-pod "YWCRangeSlider" `~> 1.0`
+pod 'YWCRangeSlider', '~> 1.0'
 ```
 ## Usage
 ```swift
