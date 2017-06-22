@@ -427,7 +427,7 @@ class RangeSlider: UIControl {
 
                 let pointX = Double(touchPoint.x.native)
                 let high = highValueForCenterX(x: pointX)
-                setValue(lgit ow: Double.nan, high: high, animated: stepValueContinuously)
+                setValue(low: Double.nan, high: high, animated: stepValueContinuously)
 
             } else {
                 highHandle.isHighlighted = false

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YWCRangeSlider"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Custom UISlider with two handler to pick a minimum and maximum range."
 
   # This description is used to generate tags and improve search results.
