@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-open class RangeSlider: UIControl {
+open class AORangeSlider: UIControl {
 
     /// default 0.0
     open var minimumValue = 0.0
@@ -162,10 +162,10 @@ open class RangeSlider: UIControl {
     private let systemBallLength: CGFloat = 28.0
 
     /// the image of value bar
-    open var trackImage = RangeSlider.getImage(color: #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1), size: CGSize(width: 1, height: 2))
+    open var trackImage = AORangeSlider.getImage(color: #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1), size: CGSize(width: 1, height: 2))
 
     /// the image of value bar when crossed
-    open var trackCrossedImage = RangeSlider.getImage(color: .red, size: CGSize(width: 1, height: 2))
+    open var trackCrossedImage = AORangeSlider.getImage(color: .red, size: CGSize(width: 1, height: 2))
 
     /// Default is nil, and use the shadow ball of system
     open var lowHandleImageNormal: UIImage? {
@@ -237,7 +237,7 @@ open class RangeSlider: UIControl {
 
         trackBackgroundImageView = UIImageView()
         //trackBackgroundImage didSet will set frame
-        trackBackgroundImage = RangeSlider.getImage(color: #colorLiteral(red: 0.7333333333, green: 0.7333333333, blue: 0.7333333333, alpha: 1), size: CGSize(width: 1, height: 2))
+        trackBackgroundImage = AORangeSlider.getImage(color: #colorLiteral(red: 0.7333333333, green: 0.7333333333, blue: 0.7333333333, alpha: 1), size: CGSize(width: 1, height: 2))
         addSubview(self.trackBackgroundImageView)
 
         trackImageView = UIImageView()

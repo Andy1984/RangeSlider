@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  YWCRangeSlider
+//  AORangeSlider
 //
 //  Created by YangWeicheng on 15/05/2017.
 //  Copyright © 2017 YWC. All rights reserved.
@@ -10,15 +10,15 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    @IBOutlet weak var basicSlider: RangeSlider!
-    @IBOutlet weak var setValuesSlider: RangeSlider!
-    @IBOutlet weak var steppedSlider: RangeSlider!
-    @IBOutlet weak var steppedContinuouslySlider: RangeSlider!
-    @IBOutlet weak var crossoverSlider: RangeSlider!
-    @IBOutlet weak var customHeightSlider: RangeSlider!
-    @IBOutlet weak var customThemeSlider: RangeSlider!
-    @IBOutlet weak var singleThumbSlider: RangeSlider!
-    @IBOutlet weak var indicatorSlider: RangeSlider!
+    @IBOutlet weak var basicSlider: AORangeSlider!
+    @IBOutlet weak var setValuesSlider: AORangeSlider!
+    @IBOutlet weak var steppedSlider: AORangeSlider!
+    @IBOutlet weak var steppedContinuouslySlider: AORangeSlider!
+    @IBOutlet weak var crossoverSlider: AORangeSlider!
+    @IBOutlet weak var customHeightSlider: AORangeSlider!
+    @IBOutlet weak var customThemeSlider: AORangeSlider!
+    @IBOutlet weak var singleThumbSlider: AORangeSlider!
+    @IBOutlet weak var indicatorSlider: AORangeSlider!
 
     override func viewDidLoad() {
 
@@ -87,11 +87,11 @@ class ViewController: UITableViewController {
 
     func setupCustomHeightSlider() {
         // magenta value bar and height is 5.0
-        let trackImage = RangeSlider.getImage(color: .magenta, size: CGSize(width: 1, height: 5))
+        let trackImage = AORangeSlider.getImage(color: .magenta, size: CGSize(width: 1, height: 5))
         customHeightSlider.trackImage = trackImage
 
         // brown background bar and height is 5.0
-        let trackBackgroundImage = RangeSlider.getImage(color: .brown, size: CGSize(width: 1, height: 5))
+        let trackBackgroundImage = AORangeSlider.getImage(color: .brown, size: CGSize(width: 1, height: 5))
         customHeightSlider.trackBackgroundImage = trackBackgroundImage
 
         customHeightSlider.lowValue = 0.25
