@@ -77,7 +77,7 @@ open class AORangeSlider: UIControl {
     /// setLowValue would call layoutSubviews, must not call setLowValue in the layoutSubviews
     private var _lowValue = 0.0
     /// default 0.0, set method does not send action
-    open var lowValue: Double {
+    @IBInspectable open var lowValue: Double {
         set {
             var value = newValue
             if stepValueInternal > 0 {
@@ -101,7 +101,7 @@ open class AORangeSlider: UIControl {
     /// setHighValue would call layoutSubviews, must not call setHighValue in the layoutSubviews
     private var _highValue = 0.0
     /// default = maximumValue, does not send action
-    open var highValue: Double {
+    @IBInspectable open var highValue: Double {
         set {
             var value = newValue
             if stepValueInternal > 0 {
@@ -168,23 +168,27 @@ open class AORangeSlider: UIControl {
     open var trackCrossedImage = AORangeSlider.getImage(color: .red, size: CGSize(width: 1, height: 2))
 
     /// Default is nil, and use the shadow ball of system
-    open var lowHandleImageNormal: UIImage? {
+    @IBInspectable open var lowHandleImageNormal: UIImage? {
         didSet {
             if lowHandleImageNormal == nil {
                 becomeSystemBall(ball: lowHandle)
             } else {
                 backToImage(ball: lowHandle)
+                //Inspectable
+                lowHandle.image = lowHandleImageNormal
             }
         }
     }
 
     /// Default is nil, and use the shadow ball of system
-    open var highHandleImageNormal: UIImage? {
+    @IBInspectable open var highHandleImageNormal: UIImage? {
         didSet {
             if highHandleImageNormal == nil {
                 becomeSystemBall(ball: highHandle)
             } else {
                 backToImage(ball: highHandle)
+                //Inspectable
+                highHandle.image = highHandleImageNormal
             }
         }
     }
