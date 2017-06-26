@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:RangeSlider.xcodeproj">
+      location = "self:/Users/YangWeicheng/Desktop/RangeSlider/AORangeSlider.xcodeproj">
    </FileRef>
 </Workspace>
