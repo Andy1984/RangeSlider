@@ -1,20 +1,20 @@
-# RangeSlider
-![showcase gif](https://raw.githubusercontent.com/Andy1984/RangeSlider/master/showcase.gif)
+# AORangeSlider
+![showcase gif](https://raw.githubusercontent.com/Andy1984/AORangeSlider/master/showcase.gif)
 
-`RangeSlider` is a custom UISlider with two handler to pick a minimum and maximum range.
+`AORangeSlider` is a custom UISlider with two handler to pick a minimum and maximum range.
 Inspired by <https://github.com/muZZkat/NMRangeSlider>
 
-#Adding `RangeSlider` to your project
+#Adding `AORangeSlider` to your project
 CocoaPods
-[CocoaPods](http://cocoapods.org) is the recommended way to add `RangeSlider` to your project.
+[CocoaPods](http://cocoapods.org) is the recommended way to add `AORangeSlider` to your project.
 Add the following line to your Podfile:
 
 ```ruby
-pod 'YWCRangeSlider', '~> 1.0'
+pod 'AORangeSlider', '~> 1.0'
 ```
 ## Usage
 ```swift
-let rangeSlider = RangeSlider(frame: frame)
+let rangeSlider = AORangeSlider(frame: frame)
 view.addSubView(rangeSlider)
 ```
 <!-- To observe value changes when using gesture
